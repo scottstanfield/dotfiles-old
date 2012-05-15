@@ -13,7 +13,7 @@ task :install do
   install("", ".dir")
   copy(".", ".copy")
   puts "Now run this command from the prompt:"
-  puts "\e[1;37m rake vim"
+  puts "\e[1;31m rake vim"
 end
 
 task :uninstall do
@@ -27,7 +27,7 @@ task :vim do
     `mkdir #{home}/.vim/bundle`
     `hub clone gmarik/vundle #{home}/.vim/bundle/vundle`
     puts "Now run this command from the prompt (ignore errors):"
-    puts "\e[1;37m vim +BundleInstall +qall"
+    puts "\e[1;31m vim +BundleInstall +qall"
 end
 
 task :debug do
