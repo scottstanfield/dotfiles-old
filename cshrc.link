@@ -1,7 +1,6 @@
 # Mac OS X should put /usr/local/bin first.
 # Can also achive by reordering /etc/paths
 #
-setenv ITERM_PROFILE solarized-dark
 
 setenv PATH "/usr/local/bin:${PATH}:$HOME/bin:."
 

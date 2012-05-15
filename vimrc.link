@@ -5,6 +5,10 @@
 " and what I remember from 1986 CSC 101 at Cal Poly on Pyramid timeshare
 " Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
 
+" Remove next line comment to force dark color scheme.
+" Usually it's picked because iTerm2 will pass it in.
+" setenv ITERM_PROFILE solarized-dark
+
 set nocompatible                " Must come first
 let mapleader = ","			    " Our free key to prefix custom commands
 filetype off
@@ -29,6 +33,10 @@ set softtabstop=4
 set shiftwidth=4        " no clue what this does
 set formatoptions+=n    " support for numbered/bulleted lists
 set shiftround          " if spaces, TAB maps to right spot
+
+set fo+=o               " Auto insert comment leader after hitting 'o' or 'O' in Normal mode.
+set fo-=r               " Do not automatically insert a comment leader after an enter
+set fo-=t               " Do no auto-wrap text using textwidth (does not apply to comments)
 
 nmap <leader>1 :set et<cr>:retab<cr>
 nmap <leader>2 :set noet<cr>:retab!<cr>
@@ -63,6 +71,12 @@ set ignorecase                  " Case-insensitive searching.
 set smartcase                   " But case-sensitive if has caps
 set incsearch                   " Highlight matches as you type.
 
+set foldenable					" turn on folding
+set foldmethod=marker			" fold on the marker (like }}})
+set foldlevel=100				" don't autofold anything
+set foldopen=block,hor,tag		" what movements open folds
+set foldopen+=percent,mark
+set foldopen+=quickfix
 
 " Don't let vim manage backup files; use git or something
 set nobackup
@@ -233,5 +247,4 @@ colorscheme solarized
 
 " Required on last line for Vundle to work right
 filetype plugin indent on   " Turn on file type detection.
-
 

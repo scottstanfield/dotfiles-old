@@ -9,16 +9,16 @@ require 'rake'
 
 
 task :install do
-  install(".", ".link")
-  install("", ".dir")
-  copy(".", ".copy")
+  _install(".", ".link")
+  _install("", ".dir")
+  _copy(".", ".copy")
   puts "Now run this command from the prompt:"
   puts "\e[1;31m rake vim"
 end
 
 task :uninstall do
-  uninstall(".", ".link")
-  uninstall("", ".dir")
+  _uninstall(".", ".link")
+  _uninstall("", ".dir")
   puts "manually remove the copied folders"
 end
 
@@ -31,14 +31,14 @@ task :vim do
 end
 
 task :debug do
-    debugPrint('link', '.', '.link')
-    debugPrint('link', '', '.dir')
-    debugPrint('copy', '.', '.copy')
+    _debugPrint('link', '.', '.link')
+    _debugPrint('link', '', '.dir')
+    _debugPrint('copy', '.', '.copy')
 end
 
 task :default => :install
 
-def copy(prefix, suffix)
+def _copy(prefix, suffix)
   # globstr = '*/**{' + suffix + '}'    # recursive version
   globstr = '*{' + suffix + '}'
   linkables = Dir.glob(globstr, File::FNM_DOTMATCH)
@@ -74,7 +74,7 @@ def copy(prefix, suffix)
   end
 end
 
-def install(prefix, suffix)
+def _install(prefix, suffix)
   # globstr = '*/**{' + suffix + '}'    # recursive version
   globstr = '*{' + suffix + '}'
   linkables = Dir.glob(globstr, File::FNM_DOTMATCH)
@@ -110,7 +110,7 @@ def install(prefix, suffix)
   end
 end
 
-def uninstall(prefix, suffix)
+def _uninstall(prefix, suffix)
   globstr = '*{' + suffix + '}'
 
   Dir.glob(globstr).each do |linkable|
@@ -129,7 +129,7 @@ def uninstall(prefix, suffix)
   end
 end
 
-def debugPrint(command, prefix, suffix) 
+def _debugPrint(command, prefix, suffix) 
   globstr = '*{' + suffix + '}'
   linkables = Dir.glob(globstr, File::FNM_DOTMATCH)
 
