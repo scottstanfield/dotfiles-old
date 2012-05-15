@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# from http://errtheblog.com/posts/89-huba-huba
+
+
+def link(source, dest)
+	home = File.expand_path('~')
+	target = File.join(home, dest)
+	`ln -si #{File.expand_path source} #{target}`
+end
+
+link("cshrc", ".cshrc")
+link("vimrc", ".vimrc")
+link("vim", ".vim")
+
+`mkdir ~/bin`
+`cp bin/* ~/bin`

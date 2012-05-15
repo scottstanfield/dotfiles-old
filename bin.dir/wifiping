@@ -1,0 +1,7 @@
+#!/bin/zsh
+while x=1; do 
+	airport -I | grep "CtlRSSI\|BSSID\|channel" | sort | sed "s/[[:space:]]//g" | sed "s/agrCtl//g" | tr "\n" "\t" 
+	echo "\r";
+	sleep 1; 
+done
+sed "s/[[:space:]]//g" 

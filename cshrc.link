@@ -1,0 +1,104 @@
+# Mac OS X should put /usr/local/bin first.
+# Can also achive by reordering /etc/paths
+#
+setenv ITERM_PROFILE solarized-dark
+
+setenv PATH "/usr/local/bin:${PATH}:$HOME/bin:."
+
+# Best example of "complete" config
+# http://dotfiles.org/~dominator22/.tcshrc
+#set complete = enhance
+#complete m				'n/*/f:^*.o/'
+#complete more			'n/*/f:^*.o/'
+#complete cd				'p/1/d/'
+#complete pushd			'p/1/d/'
+#complete pd				'p/1/d/'
+#complete rmdir			'p/*/d/'
+#complete where			'n/*/c/'
+#complete man			'n/*/c/'
+#complete which			'n/*/c/'
+#complete gunzip			'p/*/f:*.{gz,Z,tgz,taz}/'
+
+set history=1000
+set savehist=1000 merge
+set noclobber
+set hostname = `hostname | sed -e 's/[.].*//'`
+set rmstar
+set nobeep
+set autolist
+
+setenv PAGER less
+setenv LESS XFR
+setenv EDITOR vi
+setenv CC /usr/bin/gcc-4.2
+
+# ALIASES
+#
+
+# prompt ugliness now in setprompt file
+alias precmd "source ~/bin/setprompt"
+
+alias mv 'mv -i'
+alias cp 'cp -i'
+
+alias , cd .. 
+alias ll 'ls -lhG' 
+alias la 'ls -AG'
+alias ls 'ls -FG'
+alias lla 'ls -lGa'
+alias pd pushd
+alias md mkdir
+alias h history
+
+alias vimrc 'vi ~/.vimrc'
+
+alias tree "find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+
+alias c clear
+alias m more
+alias cdd "cd -"
+
+alias download 'curl \!:1 -0'
+alias downloadcb 'curl `pbpaste` -0;exit'
+
+alias take 'mkdir \!:1 && cd \!:1'
+# Git
+alias gg 'git commit -v -a -m "\!:*"'
+alias ga 'git add'
+alias gs 'git status'
+alias g  'git status'
+alias gb 'git branch --color -a'
+alias gbco 'git checkout -b'
+alias gca 'git commit -v -a'
+alias gd 'git diff | more'
+alias gp 'git push'
+alias gl 'git pull'
+alias gls 'git ls-files'
+alias gc 'git commit -am'
+
+alias t 'python ~/projects/repos/t/t.py --task-dir ~/projects/tasks --list tasks'
+alias qa 'ack -cl'		# quiet ack
+
+# Processes
+alias tc 'top -o cpu' # sort by cpu
+alias tm 'top -o vsize' # sort by memory
+
+# Finder
+alias o 'open . &'
+alias gc 'open -a "Google Chrome" --args'
+
+# Aliases
+alias ea 'vi ~/.cshrc && source ~/.cshrc'
+
+# Best alias ever
+alias zz top
+
+# find file
+alias ff 'find . -name \!:1 -print'
+
+# taillog (requires brew install grc)
+alias taillog "tail -F /var/log/system.log | grcat conf.log ;"
+
+# map ver (like Windows)
+alias ver sw_ver
+

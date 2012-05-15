@@ -1,0 +1,2 @@
+#!/bin/sh
+curl -s http://www.crh.noaa.gov/data/MTR/ZFPMTR | sed -n '/CAZ006/,/&&/ p' 

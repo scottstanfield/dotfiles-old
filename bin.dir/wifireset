@@ -1,0 +1,13 @@
+#!/bin/sh
+echo "Current Wi-Fi settings:"
+airport -I | grep "CtlRSSI\|BSSID\|channel" | sort | sed "s/[[:space:]]//g" | sed "s/agrCtl//g" | tr "\n" "\t" 
+echo "\nRestarting..."
+networksetup -setairportpower en0 off
+networksetup -setairportpower en0 on
+echo "Wi-Fi on...press CTRL-C when reconnected"
+while x=1; do 
+	airport -I | grep "CtlRSSI\|BSSID\|channel" | sort | sed "s/[[:space:]]//g" | sed "s/agrCtl//g" | tr "\n" "\t"
+	echo "\r";
+	sleep 1; 
+done
+

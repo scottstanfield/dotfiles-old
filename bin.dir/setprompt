@@ -1,0 +1,54 @@
+#!/bin/sh
+# Includes current git branch in tcsh prompt.
+#
+# Your prompt can look like this:
+#
+#   [myhost.com ~/repos/foo (master)]
+#
+# USAGE:
+#
+# 1) Save this script as ~/bin/setprompt
+# 2) In .cshrc, include this line:
+#
+#      alias precmd "source ~/bin/setprompt"
+#
+# AUTHOR
+#
+#   Original from http://acts.as.streeteasy.com/archives/2007/12/19/git_in_your_prompt/
+#   Modified for tcsh by Geoffrey Grosenbach http://peepcode.com
+
+switch ( `uname` )
+	case Darwin:
+		set ptail = "»"; breaksw;
+	case Linux:
+		set ptail = "ϕ"; breaksw;
+	default:
+		set ptail = "%"; breaksw;
+endsw
+
+switch ($ITERM_PROFILE)
+	case 'solarized-dark':
+		set color_path="%{\033[0;40m%}" 
+		breaksw;
+	case 'solarized-light':
+		set color_path="%{\033[0;47m%}" 
+		breaksw;
+	default:
+		set color_path="%{\033[0;47m%}" 
+		breaksw;
+endsw
+
+set color_gray="%{\033[1;36m%}" 
+set color_normal="%{\033[0m%}" 
+set color_history="%{\033[0;35m%}" 
+
+setenv GIT_PROMPT  "git status |& git-prompt.awk"
+
+# history time path
+set p1="%B%h%b %t:%B$color_path%~$color_normal%b " 
+
+# history time computer path
+# set p1="%h %t %B%m%b:%B$color_path%~$color_normal%b " 
+
+set prompt="${color_history}${p1}${color_gray}`$GIT_PROMPT`${color_normal}${ptail} "
+

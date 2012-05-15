@@ -1,0 +1,237 @@
+" Tips compiled from
+" http://items.sjbach.com/319/configuring-vim-right
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+" http://github.com/holman/dotfiles
+" and what I remember from 1986 CSC 101 at Cal Poly on Pyramid timeshare
+" Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
+
+set nocompatible                " Must come first
+let mapleader = ","			    " Our free key to prefix custom commands
+filetype off
+
+" -----------------------------------------------------------
+" Vundle 
+" -----------------------------------------------------------
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+syntax enable
+
+" -----------------------------------------------------------
+" Indenting
+" -----------------------------------------------------------
+set autoindent          " auto indent new lines
+set smartindent         " be smart about it
+set wrap                " do not wrap lines please
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4        " no clue what this does
+set formatoptions+=n    " support for numbered/bulleted lists
+set shiftround          " if spaces, TAB maps to right spot
+
+nmap <leader>1 :set et<cr>:retab<cr>
+nmap <leader>2 :set noet<cr>:retab!<cr>
+ 
+" -----------------------------------------------------------
+" UI
+" -----------------------------------------------------------
+
+set colorcolumn=80      " vertical line at 80 cols
+
+set number              " Show line numbers.
+set ruler               " Show cursor position.
+set showcmd             " Display incomplete commands.
+set showmode            " Display the mode you're in.
+set shortmess=atI       " stifle the long interrupt prompts
+
+" -----------------------------------------------------------
+" Behavior
+" -----------------------------------------------------------
+set noerrorbells                " No beeping!
+set visualbell                  " No flashing either.
+
+let loaded_matchparen = 1       " Just use % instead of auto paren matching
+
+set backspace=indent,eol,start  " Intuitive backspacing.
+set hidden                      " change buffers w/o saving
+set wildmenu                    " Enhanced command line completion.
+set wildmode=list:longest       " Complete files like a shell.
+set wildignore=*.jpg,*.gif,*.png
+
+set ignorecase                  " Case-insensitive searching.
+set smartcase                   " But case-sensitive if has caps
+set incsearch                   " Highlight matches as you type.
+
+
+" Don't let vim manage backup files; use git or something
+set nobackup
+set noswapfile
+
+" Yank goes to the system clipboard in vim 7.3
+set clipboard=unnamed
+
+
+set scrolloff=3          " Show 3 lines around cursor (more context)
+set title                 " Set the terminal's title
+let &titleold=getcwd()
+set nowritebackup           " And again.
+set history=200             " default is only 50
+
+" -----------------------------------------------------------
+" Remapping
+" -----------------------------------------------------------
+
+" Open current Markdown (*.md) file in OS X "Marked" and force redraw
+:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
+
+" ROT13 is fun!
+nmap <leader>r ggVGg?
+
+" Show cursor column marker
+nmap <leader>c :set cursorcolumn!<CR>
+nmap <leader>l :set cursorline!<CR>
+hi CursorLine ctermbg=yellow ctermfg=white cterm=none
+
+" Show whitespace ¬ ¶
+nmap <leader>w :set list!<CR>
+set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
+
+" Two semicolons exits insert mode. It's not a common key sequence
+:imap jj <Esc>
+
+" Clear search highlight by hitting ,/
+nmap <silent> <leader>/ :nohl<CR>
+
+"map space to page-down (to make it more like 'more')
+map <Space> <PageDown>
+
+nmap <C-j> <C-d>
+nmap <C-k> <C-u>
+
+nmap <leader>b <C-w>l
+
+" Indent and outdent now > and < keep the visual selection
+vmap > >gv
+vmap < <gv
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" Auto-complete for keywords
+" imap <Tab> <C-N>
+imap <S-Tab> <C-P>
+
+""""""""""""""""""""""""""
+" Automatically insert line breaks in text files
+" au BufEnter *.txt setl tx fo+=n2a linebreak
+
+"use .vim/skel/template.html template for editing new files that match *.html
+" autocmd! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
+
+function! LoadTemplate() 
+        silent! 0r ~/.vim/skel/template.%:e 
+        " Highlight %VAR% placeholders with the Todo colour group 
+        syn match Todo "%\u\+%" containedIn=ALL
+endfunction 
+
+autocmd! BufNewFile * call LoadTemplate() 
+au BufNewFile,BufRead *.jade set filetype=jade
+
+nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr> 
+        
+" Jump between %VAR% placeholders in Insert mode with <Ctrl-p> 
+inoremap <c-p> <ESC>/%\u.\{-1,}%<cr>c/%/
+               
+" Execute file being edited with <Shift> + e:
+map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+
+
+" Use Q for formatting the current paragraph or selection
+vmap Q gq
+nmap Q gqap
+
+" Up and down works better with wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" ` is more useful than ', but less accessible, so swap them
+nnoremap ' `
+nnoremap ` '
+
+
+runtime macros/matchit.vim        " Load the matchit plugin.
+
+" set laststatus=2                  " Show the status line all the time
+" Useful status information at bottom of screen
+" set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+
+" Tab mappings.
+map <leader>tt :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
+" Uncomment to use Jamis Buck's file opening plugin
+"map <Leader>t :FuzzyFinderTextMate<Enter>
+
+" Controversial...use SEMICOLON instead of colon (no need to SHIFT)
+nnoremap ; :
+
+" -----------------------------------------------------------
+" Bundles
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
+" http://nvie.com/posts/how-i-boosted-my-vim/
+" -----------------------------------------------------------
+
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'scrooloose/nerdtree'
+Bundle 'altercation/vim-colors-solarized'
+
+nmap <leader>t :NERDTree<cr>
+
+" Bundle: git://github.com/scrooloose/nerdcommenter.git
+
+" Bundle: git://github.com/mattn/zencoding-vim.git 
+let g:user_zen_expandabbr_key = '<c-e>'
+
+" Bundle: git://github.com/mileszs/ack.vim.git
+nmap <leader>a :Ack 
+
+" Bundle: git://github.com/altercation/vim-colors-solarized.git
+" Bundle: git://github.com/tpope/vim-fugitive.git
+" Bundle: git://github.com/tpope/vim-speeddating.git
+" Bundle: git://github.com/digitaltoad/vim-jade.git
+" Bundle: git://github.com/kchmck/vim-coffee-script.git
+" Bundle: git://github.com/groenewege/vim-less.git
+" Bundle: git://github.com/wavded/vim-stylus.git
+
+
+" -----------------------------------------------------------
+" Colors (solarized) 
+" -----------------------------------------------------------
+let g:solarized_contrast="high"    
+let g:solarized_visibility="high"
+call togglebg#map("<leader>x")			" ,x toggles dark/light
+
+let profile = $ITERM_PROFILE
+if profile ==? 'solarized-dark'
+	set background=dark					" light | dark
+	hi colorcolumn ctermbg=darkgrey 
+else
+	set background=light
+	hi colorcolumn ctermbg=lightgrey 
+endif
+colorscheme solarized
+
+" Required on last line for Vundle to work right
+filetype plugin indent on   " Turn on file type detection.
+
+
