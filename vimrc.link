@@ -1,82 +1,89 @@
+" vim: set fo-=or
+
 " Tips compiled from
 " http://items.sjbach.com/319/configuring-vim-right
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " http://github.com/holman/dotfiles
 " and what I remember from 1986 CSC 101 at Cal Poly on Pyramid timeshare
 " Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
+" Also: Annoying vim features: http://www.jrwz.net/technical/vi/mytips.html
 
 " Remove next line comment to force dark color scheme.
 " Usually it's picked because iTerm2 will pass it in.
 " setenv ITERM_PROFILE solarized-dark
 
-set nocompatible                " Must come first
-let mapleader = ","			    " Our free key to prefix custom commands
-filetype off
+set nocompatible                " be iMproved
+syntax on						" Enable syntax highlighting
+let mapleader = ","             " Our free key to prefix custom commands
 
-" -----------------------------------------------------------
-" Vundle 
-" -----------------------------------------------------------
+" General {
+set pastetoggle=<F2>			" --INSERT (paste)-- means safe for formatted text
+" }
+
+" Vundle {
+filetype off					" Required first for Bundles to work
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
+" }
 
-syntax enable
+" Must have options {
+set hidden                      " switch buffers w/o saving
+set wildmenu                    " Enhanced command line completion.
+set wildmode=list:longest       " Complete files like a shell.
+set wildignore=*.jpg,*.gif,*.png
 
-" -----------------------------------------------------------
-" Indenting
-" -----------------------------------------------------------
+set showcmd						" Display incomplete commands.
+set hlsearch					" Highlight searches <leader>/ turns off
+nmap <silent> <leader>/ :nohl<CR>
+
+set modeline
+
+" }
+
+" Indenting and tabs {
 set autoindent          " auto indent new lines
 set smartindent         " be smart about it
 set wrap                " do not wrap lines please
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4        " no clue what this does
-set formatoptions+=n    " support for numbered/bulleted lists
 set shiftround          " if spaces, TAB maps to right spot
 
-set fo+=o               " Auto insert comment leader after hitting 'o' or 'O' in Normal mode.
-set fo-=r               " Do not automatically insert a comment leader after an enter
-set fo-=t               " Do no auto-wrap text using textwidth (does not apply to comments)
+" set fo+=c				" Auto-wrap comments, inserting comment leader
+" set fo+=t               " Auto-wrap text using textwidth
+" set fo-=r               " Do not auto insert a comment leader after <Enter>
+" set fo-=n
+
+" Necessary for previous 4 lines http://goo.gl/bxpIO
+" autocmd BufNewFile,BufRead * setlocal formatoptions=cqnt
 
 nmap <leader>1 :set et<cr>:retab<cr>
 nmap <leader>2 :set noet<cr>:retab!<cr>
- 
-" -----------------------------------------------------------
-" UI
-" -----------------------------------------------------------
+" }
 
+" UI {
 set colorcolumn=80      " vertical line at 80 cols
 
 set number              " Show line numbers.
 set ruler               " Show cursor position.
-set showcmd             " Display incomplete commands.
 set showmode            " Display the mode you're in.
 set shortmess=atI       " stifle the long interrupt prompts
+" }
 
-" -----------------------------------------------------------
-" Behavior
-" -----------------------------------------------------------
+" Behavior {
 set noerrorbells                " No beeping!
 set visualbell                  " No flashing either.
 
 let loaded_matchparen = 1       " Just use % instead of auto paren matching
 
 set backspace=indent,eol,start  " Intuitive backspacing.
-set hidden                      " change buffers w/o saving
-set wildmenu                    " Enhanced command line completion.
-set wildmode=list:longest       " Complete files like a shell.
-set wildignore=*.jpg,*.gif,*.png
 
 set ignorecase                  " Case-insensitive searching.
 set smartcase                   " But case-sensitive if has caps
 set incsearch                   " Highlight matches as you type.
 
-set foldenable					" turn on folding
-set foldmethod=marker			" fold on the marker (like }}})
-set foldlevel=100				" don't autofold anything
-set foldopen=block,hor,tag		" what movements open folds
-set foldopen+=percent,mark
-set foldopen+=quickfix
+"}
 
 " Don't let vim manage backup files; use git or something
 set nobackup
@@ -85,16 +92,63 @@ set noswapfile
 " Yank goes to the system clipboard in vim 7.3
 set clipboard=unnamed
 
-
 set scrolloff=3          " Show 3 lines around cursor (more context)
 set title                 " Set the terminal's title
 let &titleold=getcwd()
 set nowritebackup           " And again.
 set history=200             " default is only 50
 
-" -----------------------------------------------------------
-" Remapping
-" -----------------------------------------------------------
+" Folding {
+set foldenable                  " turn on folding
+set foldmarker={,}
+set foldmethod=marker           " fold on the marker [three } in a row]
+set foldlevel=100               " don't autofold anything
+set foldopen=block,hor,tag      " what movements open folds
+set foldopen+=percent,mark
+set foldopen+=quickfix"
+
+inoremap <F9> <C-O>za
+noremap <F9> za
+noremap <leader>f za
+vnoremap <Space> zf
+
+nnoremap <F10> :silent call ToggleFold()<CR>
+
+nnoremap zc zM
+nnoremap zo zR
+
+" From https://github.com/vim-scripts/Efficient-python-folding
+let b:folded = 1
+function! ToggleFold()
+	if( b:folded == 0 )
+		exec "normal! zM"
+		let b:folded = 1
+	else
+		exec "normal! zR"
+		let b:folded =0
+	endif
+endfunction
+" }
+
+
+" Mapping {
+
+" Controversial...use SEMICOLON instead of COLON (no need to SHIFT)
+nnoremap ; :
+
+" Use Q for formatting the current paragraph or selection
+vmap Q gq
+nmap Q gqap
+
+" Up and down works better with wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+cnoremap Wq wq			" I type this all the time
+
+" <leader>r to open HTML file in browser  http://goo.gl/yJtG4
+au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
+au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
 
 " Open current Markdown (*.md) file in OS X "Marked" and force redraw
 :nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
@@ -111,11 +165,9 @@ hi CursorLine ctermbg=yellow ctermfg=white cterm=none
 nmap <leader>w :set list!<CR>
 set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
-" Two semicolons exits insert mode. It's not a common key sequence
+" Wha? Two quick jj exits insert mode. It's not a common key sequence
 :imap jj <Esc>
 
-" Clear search highlight by hitting ,/
-nmap <silent> <leader>/ :nohl<CR>
 
 "map space to page-down (to make it more like 'more')
 map <Space> <PageDown>
@@ -134,6 +186,9 @@ vmap <S-Tab> <gv
 " Auto-complete for keywords
 " imap <Tab> <C-N>
 imap <S-Tab> <C-P>
+
+" }
+
 
 """"""""""""""""""""""""""
 " Automatically insert line breaks in text files
@@ -155,23 +210,16 @@ nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr>
         
 " Jump between %VAR% placeholders in Insert mode with <Ctrl-p> 
 inoremap <c-p> <ESC>/%\u.\{-1,}%<cr>c/%/
+
+
+" Make python coding easier
+autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
                
 " Execute file being edited with <Shift> + e:
 map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
 nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
 
 
-" Use Q for formatting the current paragraph or selection
-vmap Q gq
-nmap Q gqap
-
-" Up and down works better with wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-" ` is more useful than ', but less accessible, so swap them
-nnoremap ' `
-nnoremap ` '
 
 
 runtime macros/matchit.vim        " Load the matchit plugin.
@@ -195,14 +243,10 @@ map <leader>tm :tabmove
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
 
-" Controversial...use SEMICOLON instead of colon (no need to SHIFT)
-nnoremap ; :
 
-" -----------------------------------------------------------
-" Bundles
+" Bundles {
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
 " http://nvie.com/posts/how-i-boosted-my-vim/
-" -----------------------------------------------------------
 
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
@@ -226,25 +270,26 @@ nmap <leader>a :Ack
 " Bundle: git://github.com/kchmck/vim-coffee-script.git
 " Bundle: git://github.com/groenewege/vim-less.git
 " Bundle: git://github.com/wavded/vim-stylus.git
+" }
 
 
-" -----------------------------------------------------------
-" Colors (solarized) 
-" -----------------------------------------------------------
+" Colors (solarized) {
 let g:solarized_contrast="high"    
 let g:solarized_visibility="high"
-call togglebg#map("<leader>x")			" ,x toggles dark/light
+call togglebg#map("<leader>x")          " ,x toggles dark/light
 
 let profile = $ITERM_PROFILE
 if profile ==? 'solarized-dark'
-	set background=dark					" light | dark
-	hi colorcolumn ctermbg=darkgrey 
+    set background=dark                 " light | dark
+    hi colorcolumn ctermbg=darkgrey 
 else
-	set background=light
-	hi colorcolumn ctermbg=lightgrey 
+    set background=light
+    hi colorcolumn ctermbg=lightgrey 
 endif
 colorscheme solarized
+" }
 
-" Required on last line for Vundle to work right
+" place this after Bundles have loaded
 filetype plugin indent on   " Turn on file type detection.
+
 
