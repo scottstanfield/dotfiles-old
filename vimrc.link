@@ -4,7 +4,9 @@
 "   http://items.sjbach.com/319/configuring-vim-right
 "   http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 "   http://github.com/holman/dotfiles
+"	http://vi-improved.org/vimrc.html
 "   and what I remember from 1986 CSC 101 at Cal Poly on Pyramid timeshare
+"	http://peox.net/articles/vimconfig.html
 "   Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
 "   Also: Annoying vim features: http://www.jrwz.net/technical/vi/mytips.html
 " }}
