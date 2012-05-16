@@ -9,15 +9,15 @@ Step 1: Clone and link .cshrc and .vimrc
   ```sh
   % git clone git://github.com/rm8t/dotfiles ~/.dotfiles
   % cd .dotfiles
-  % ./install
+  % rake install
   ```
 
 Step 2: Install VIM plugins
 ---------------------------
 
   ```sh
-  % git submodule update --init
-  % update-bundles\vim-update-bundles
+  % rake vim
+  % vim +BundleInstall +qall
   ```
 
 Notes
