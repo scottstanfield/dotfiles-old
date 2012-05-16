@@ -122,62 +122,53 @@
 
 " Mapping {{
 
-" Controversial...use SEMICOLON instead of COLON (no need to SHIFT)
-nnoremap ; :
+	nnoremap ; :					" Semicolon for command mode is quicker than colon
+	imap jj <Esc>					" two quick jj exits insert mode (uncommon)
 
-" Use Q for formatting the current paragraph or selection
-vmap Q gq
-nmap Q gqap
+	vmap Q gq						" Q for formatting paragraph or selection
+	nmap Q gqap
+	nnoremap j gj					" Sane navigation for wrapped lines
+	nnoremap k gk
+	cnoremap Wq wq					" I type this all the time
 
-" Up and down works better with wrapped lines
-nnoremap j gj
-nnoremap k gk
+	" <leader>r to open HTML file in browser  http://goo.gl/yJtG4
+	au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
+	au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
 
-cnoremap Wq wq          " I type this all the time
+	" Open current Markdown (*.md) file in OS X "Marked" and force redraw
+	nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
 
-" <leader>r to open HTML file in browser  http://goo.gl/yJtG4
-au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
-au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
+	nmap <leader>r ggVGg?			" ROT13 is fun!
 
-" Open current Markdown (*.md) file in OS X "Marked" and force redraw
-:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
+	" Show cursor column marker
+	nmap <leader>c :set cursorcolumn!<CR>
+	nmap <leader>l :set cursorline!<CR>
+	hi CursorLine ctermbg=yellow ctermfg=white cterm=none
 
-" ROT13 is fun!
-nmap <leader>r ggVGg?
+	" Show whitespace ¬ ¶
+	nmap <leader>w :set list!<CR>
+	set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
-" Show cursor column marker
-nmap <leader>c :set cursorcolumn!<CR>
-nmap <leader>l :set cursorline!<CR>
-hi CursorLine ctermbg=yellow ctermfg=white cterm=none
+	map <Space> <PageDown>			" make space more like 'more'
 
-" Show whitespace ¬ ¶
-nmap <leader>w :set list!<CR>
-set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
+	nmap <C-j> <C-d>
+	nmap <C-k> <C-u>
 
-" Wha? Two quick jj exits insert mode. It's not a common key sequence
-:imap jj <Esc>
+	nmap <leader>b <C-w>l
 
+	" Indent and outdent now > and < keep the visual selection
+	vmap > >gv
+	vmap < <gv
+	vmap <Tab> >gv
+	vmap <S-Tab> <gv
 
-"map space to page-down (to make it more like 'more')
-map <Space> <PageDown>
+	" Auto-complete for keywords
+	" imap <Tab> <C-N>
+	imap <S-Tab> <C-P>
 
-nmap <C-j> <C-d>
-nmap <C-k> <C-u>
-
-nmap <leader>b <C-w>l
-
-" Indent and outdent now > and < keep the visual selection
-vmap > >gv
-vmap < <gv
-vmap <Tab> >gv
-vmap <S-Tab> <gv
-
-" Auto-complete for keywords
-" imap <Tab> <C-N>
-imap <S-Tab> <C-P>
-
+	" Execute buffer in Python 
+	nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
 " }}
-
 
 " Skeleton files with todo templates {{
 "use .vim/skel/template.html template for editing new files that match *.html
@@ -194,31 +185,25 @@ inoremap <c-p> <ESC>/%\u.\{-1,}%<cr>c/%/
 nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr> 
 " }}
 
+" Filetypes {{
 " Automatically insert line breaks in text files
 " au BufEnter *.txt setl tx fo+=n2a linebreak
 
 au BufNewFile,BufRead *.jade set filetype=jade
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+" }}
 
-               
-" Execute file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
-nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
-
-" Tab mappings.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
-
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
-
+" Tabbed Windows {{
+	map <leader>tt :tabnew<cr>
+	map <leader>te :tabedit
+	map <leader>tc :tabclose<cr>
+	map <leader>to :tabonly<cr>
+	map <leader>tn :tabnext<cr>
+	map <leader>tp :tabprevious<cr>
+	map <leader>tf :tabfirst<cr>
+	map <leader>tl :tablast<cr>
+	map <leader>tm :tabmove
+" }}
 
 " Bundles {{
     " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
@@ -226,21 +211,23 @@ map <leader>tm :tabmove
 
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-repeat'
-    Bundle 'scrooloose/nerdtree'
     Bundle 'altercation/vim-colors-solarized'
 	Bundle 'matchit.zip'
 
+	Bundle 'mattn/zencoding-vim'
+    let g:user_zen_expandabbr_key = '<c-e>'
+
+    Bundle 'scrooloose/nerdtree'
     nmap <leader>t :NERDTree<cr>
 
-    " Bundle: git://github.com/scrooloose/nerdcommenter.git
+	" Uncomment to use Jamis Buck's file opening plugin
+	"map <Leader>t :FuzzyFinderTextMate<Enter>
 
-    " Bundle: git://github.com/mattn/zencoding-vim.git 
-    let g:user_zen_expandabbr_key = '<c-e>'
+    " Bundle: git://github.com/scrooloose/nerdcommenter.git
 
     " Bundle: git://github.com/mileszs/ack.vim.git
     nmap <leader>a :Ack 
 
-    " Bundle: git://github.com/altercation/vim-colors-solarized.git
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
     " Bundle: git://github.com/digitaltoad/vim-jade.git
@@ -248,7 +235,6 @@ map <leader>tm :tabmove
     " Bundle: git://github.com/groenewege/vim-less.git
     " Bundle: git://github.com/wavded/vim-stylus.git
 " }}
-
 
 " Colors (solarized) {{
     let g:solarized_contrast="high"    
