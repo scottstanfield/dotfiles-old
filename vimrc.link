@@ -4,9 +4,9 @@
 "   http://items.sjbach.com/319/configuring-vim-right
 "   http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 "   http://github.com/holman/dotfiles
-"	http://vi-improved.org/vimrc.html
+"   http://vi-improved.org/vimrc.html
 "   and what I remember from 1986 CSC 101 at Cal Poly on Pyramid timeshare
-"	http://peox.net/articles/vimconfig.html
+"   http://peox.net/articles/vimconfig.html
 "   Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
 "   Also: Annoying vim features: http://www.jrwz.net/technical/vi/mytips.html
 " }}
@@ -26,9 +26,9 @@
 " }}
 
 " General {{
-	set nobackup					" don't let vim backup files
-	set noswapfile
-	set nowritebackup				" And again.
+    set nobackup                    " don't let vim backup files
+    set noswapfile
+    set nowritebackup               " And again.
     set autochdir                   " always switch to current dir
     set backspace=indent,eol,start  " Intuitive backspacing.
     set backupdir=~/.vim/backup
@@ -124,52 +124,54 @@
 
 " Mapping {{
 
-	nnoremap ; :					" Semicolon for command mode is quicker than colon
-	imap jj <Esc>					" two quick jj exits insert mode (uncommon)
+    " Semicolon for command mode is quicker than colon
+    nnoremap ; :
 
-	vmap Q gq						" Q for formatting paragraph or selection
-	nmap Q gqap
-	nnoremap j gj					" Sane navigation for wrapped lines
-	nnoremap k gk
-	cnoremap Wq wq					" I type this all the time
+    imap jj <Esc>                   " two quick jj exits insert mode (uncommon)
 
-	" <leader>r to open HTML file in browser  http://goo.gl/yJtG4
-	au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
-	au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
+    vmap Q gq                       " Q for formatting paragraph or selection
+    nmap Q gqap
+    nnoremap j gj                   " Sane navigation for wrapped lines
+    nnoremap k gk
+    :cnoremap Wq wq                 " I type this all the time
 
-	" Open current Markdown (*.md) file in OS X "Marked" and force redraw
-	nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
+    " <leader>r to open HTML file in browser  http://goo.gl/yJtG4
+    au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
+    au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
 
-	nmap <leader>r ggVGg?			" ROT13 is fun!
+    " Open current Markdown (*.md) file in OS X "Marked" and force redraw
+    nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
 
-	" Show cursor column marker
-	nmap <leader>c :set cursorcolumn!<CR>
-	nmap <leader>l :set cursorline!<CR>
-	hi CursorLine ctermbg=yellow ctermfg=white cterm=none
+    nmap <leader>r ggVGg?           " ROT13 is fun!
 
-	" Show whitespace ¬ ¶
-	nmap <leader>w :set list!<CR>
-	set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
+    " Show cursor column marker
+    nmap <leader>c :set cursorcolumn!<CR>
+    nmap <leader>l :set cursorline!<CR>
+    hi CursorLine ctermbg=yellow ctermfg=white cterm=none
 
-	map <Space> <PageDown>			" make space more like 'more'
+    " Show whitespace ¬ ¶
+    nmap <leader>w :set list!<CR>
+    set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
-	nmap <C-j> <C-d>
-	nmap <C-k> <C-u>
+    map <Space> <PageDown>          " make space more like 'more'
 
-	nmap <leader>b <C-w>l
+    nmap <C-j> <C-d>
+    nmap <C-k> <C-u>
 
-	" Indent and outdent now > and < keep the visual selection
-	vmap > >gv
-	vmap < <gv
-	vmap <Tab> >gv
-	vmap <S-Tab> <gv
+    nmap <leader>b <C-w>l
 
-	" Auto-complete for keywords
-	" imap <Tab> <C-N>
-	imap <S-Tab> <C-P>
+    " Indent and outdent now > and < keep the visual selection
+    vmap > >gv
+    vmap < <gv
+    vmap <Tab> >gv
+    vmap <S-Tab> <gv
 
-	" Execute buffer in Python 
-	nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    " Auto-complete for keywords
+    " imap <Tab> <C-N>
+    imap <S-Tab> <C-P>
+
+    " Execute buffer in Python 
+    nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
 " }}
 
 " Skeleton files with todo templates {{
@@ -196,15 +198,15 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
 " Tabbed Windows {{
-	map <leader>tt :tabnew<cr>
-	map <leader>te :tabedit
-	map <leader>tc :tabclose<cr>
-	map <leader>to :tabonly<cr>
-	map <leader>tn :tabnext<cr>
-	map <leader>tp :tabprevious<cr>
-	map <leader>tf :tabfirst<cr>
-	map <leader>tl :tablast<cr>
-	map <leader>tm :tabmove
+    map <leader>tt :tabnew<cr>
+    map <leader>te :tabedit
+    map <leader>tc :tabclose<cr>
+    map <leader>to :tabonly<cr>
+    map <leader>tn :tabnext<cr>
+    map <leader>tp :tabprevious<cr>
+    map <leader>tf :tabfirst<cr>
+    map <leader>tl :tablast<cr>
+    map <leader>tm :tabmove
 " }}
 
 " Bundles {{
@@ -214,16 +216,16 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-repeat'
     Bundle 'altercation/vim-colors-solarized'
-	Bundle 'matchit.zip'
+    Bundle 'matchit.zip'
 
-	Bundle 'mattn/zencoding-vim'
+    Bundle 'mattn/zencoding-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
 
     Bundle 'scrooloose/nerdtree'
     nmap <leader>t :NERDTree<cr>
 
-	" Uncomment to use Jamis Buck's file opening plugin
-	"map <Leader>t :FuzzyFinderTextMate<Enter>
+    " Uncomment to use Jamis Buck's file opening plugin
+    "map <Leader>t :FuzzyFinderTextMate<Enter>
 
     " Bundle: git://github.com/scrooloose/nerdcommenter.git
 
