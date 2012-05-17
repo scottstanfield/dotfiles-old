@@ -47,7 +47,10 @@ set color_history="%{\033[0;35m%}"
 setenv GIT_PROMPT  "git status |& git-prompt.awk"
 
 # history time path
-set p1="%B%h%b %t:%B$color_path%~$color_normal%b " 
+#set p1="%B%h%b %t:%B$color_path%~$color_normal%b " 
+
+# history time path
+set p1="%B%h%b %m:%B$color_path%~$color_normal%b " 
 
 # history time computer path
 # set p1="%h %t %B%m%b:%B$color_path%~$color_normal%b " 
