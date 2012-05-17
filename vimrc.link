@@ -127,13 +127,18 @@
     " Semicolon for command mode is quicker than colon
     nnoremap ; :
 
-    imap jj <Esc>                   " two quick jj exits insert mode (uncommon)
+	" Two quick jj exits insert mode (odd, I know)
+    inoremap jj <Esc>                   
 
-    vmap Q gq                       " Q for formatting paragraph or selection
+	" Q for formatting paragraph or selection
+    vmap Q gq                       
     nmap Q gqap
-    nnoremap j gj                   " Sane navigation for wrapped lines
-    nnoremap k gk
-    :cnoremap Wq wq                 " I type this all the time
+
+	" Sane navigation for wrapped lines
+	nnoremap j gj                   
+	nnoremap k gk
+
+    :cnoremap Wq wq                 
 
     " <leader>r to open HTML file in browser  http://goo.gl/yJtG4
     au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
@@ -153,7 +158,7 @@
     nmap <leader>w :set list!<CR>
     set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
-    map <Space> <PageDown>          " make space more like 'more'
+    map <Space> <PageDown>          
 
     nmap <C-j> <C-d>
     nmap <C-k> <C-u>
