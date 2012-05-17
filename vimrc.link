@@ -218,6 +218,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
     " http://nvie.com/posts/how-i-boosted-my-vim/
 
+	Bundle 'tpope/vim-markdown'
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-repeat'
     Bundle 'altercation/vim-colors-solarized'
