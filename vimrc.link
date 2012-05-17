@@ -267,4 +267,5 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
 " place this after Bundles have loaded
 filetype plugin indent on   
+autocmd FileType, text,markdown setlocal textwidth=72
 

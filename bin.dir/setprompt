@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/csh
 # Includes current git branch in tcsh prompt.
 #
 # Your prompt can look like this:
@@ -17,16 +17,18 @@
 #   Original from http://acts.as.streeteasy.com/archives/2007/12/19/git_in_your_prompt/
 #   Modified for tcsh by Geoffrey Grosenbach http://peepcode.com
 
-switch ( `uname` )
-	case Darwin:
-		set ptail = "»"; breaksw;
-	case Linux:
-		set ptail = "ϕ"; breaksw;
-	default:
-		set ptail = "%"; breaksw;
-endsw
 
-switch ($ITERM_PROFILE)
+set ptail = "»"
+# set ptail = "ϕ"
+# set ptail = "%"
+
+if ! $?ITERM_PROFILE then
+	set profile="solarized-light"
+else
+	set profile=$ITERM_PROFILE
+endif
+
+switch ($profile)
 	case 'solarized-dark':
 		set color_path="%{\033[0;40m%}" 
 		breaksw;
