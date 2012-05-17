@@ -1,19 +1,23 @@
+!#/bin/sh
+
 # Based on https://github.com/mathiasbynens/dotfiles/blob/master/.osx.
 # And http://www.johnkastler.net/2011/12/25/os-x-defaults/
 # And https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
-# Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)."
+# Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs).
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Expand save panel by default."
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-# Disable the 'Are you sure you want to open this application?' dialog."
+# Disable the 'Are you sure you want to open this application?' dialog.
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Disable window animations."
+# Disable window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
+# Reverse scroll direction like it should be
+defaults write com.apple.swipescrolldirection -bool false
 
 ########################################
 # Trackpad 
@@ -155,6 +159,10 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Disable automatic iTunes backup of iOS devices
+defaults write com.apple.iTunes AutomaticDeviceBackupsDisabled -bool true
+
 
 ########################################
 # Restart 
