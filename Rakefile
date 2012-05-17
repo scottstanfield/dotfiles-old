@@ -13,13 +13,13 @@ task :install do
   _install("", ".dir")
   _copy(".", ".copy")
   puts "Now run this command from the prompt:"
-  puts "\e[1;31m rake vim"
+  puts "\e[1;31mrake vim \e[m"
 end
 
 task :uninstall do
   _uninstall(".", ".link")
   _uninstall("", ".dir")
-  puts "manually remove the copied folders"
+  puts "\e[1;31mYou remove ~/.vim folder.\e[m"
 end
 
 task :vim do
@@ -27,13 +27,14 @@ task :vim do
     `mkdir #{home}/.vim/bundle`
     `hub clone gmarik/vundle #{home}/.vim/bundle/vundle`
     puts "Now run this command from the prompt (ignore errors):"
-    puts "\e[1;31m vim +BundleInstall +qall"
+    puts "\e[1;31mvim +BundleInstall +qall\e[m"
 end
 
 task :debug do
     _debugPrint('link', '.', '.link')
     _debugPrint('link', '', '.dir')
     _debugPrint('copy', '.', '.copy')
+	puts "\e[1;31mFinished\e[m"
 end
 
 task :default => :install
