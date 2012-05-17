@@ -49,10 +49,10 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 ########################################
 # Keyboard 
 # Set a fast keyboard repeat rate."
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -int 2
 
 # Set a shorter Delay until key repeat."
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 ########################################
 # Hot Corners
@@ -129,8 +129,8 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 ## Show the ~/Library folder."
 #chflags nohidden ~/Library
 
-defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-defaults write com.appple.loginwindow LoginWindowLaunchesRelaunchApps -bool false
+# defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# defaults write com.appple.loginwindow LoginWindowLaunchesRelaunchApps -bool false
 
 ########################################
 # Apps
