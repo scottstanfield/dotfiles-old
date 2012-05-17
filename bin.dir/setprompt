@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/csh
 # Includes current git branch in tcsh prompt.
 #
 # Your prompt can look like this:
@@ -26,7 +26,13 @@ switch ( `uname` )
 		set ptail = "%"; breaksw;
 endsw
 
-switch ($ITERM_PROFILE)
+if ! $?ITERM_PROFILE then
+	set profile="solarized-light"
+else
+	set profile=$ITERM_PROFILE
+endif
+
+switch ($profile)
 	case 'solarized-dark':
 		set color_path="%{\033[0;40m%}" 
 		breaksw;
