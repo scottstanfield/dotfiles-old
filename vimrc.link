@@ -127,18 +127,18 @@
     " Semicolon for command mode is quicker than colon
     nnoremap ; :
 
-	" Two quick jj exits insert mode (odd, I know)
-    inoremap jj <Esc>                   
+    " Two quick jj exits insert mode (odd, I know)
+    inoremap jj <Esc>
 
-	" Q for formatting paragraph or selection
-    vmap Q gq                       
+    " Q for formatting paragraph or selection
+    vmap Q gq
     nmap Q gqap
 
-	" Sane navigation for wrapped lines
-	nnoremap j gj                   
-	nnoremap k gk
+    " Sane navigation for wrapped lines
+    nnoremap j gj
+    nnoremap k gk
 
-    :cnoremap Wq wq                 
+    :cnoremap Wq wq
 
     " <leader>r to open HTML file in browser  http://goo.gl/yJtG4
     au FileType html map <buffer> <leader>r :silent! ! open -g %<cr>:redraw!<cr>
@@ -218,7 +218,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
     " http://nvie.com/posts/how-i-boosted-my-vim/
 
-	Bundle 'tpope/vim-markdown'
+    Bundle 'tpope/vim-markdown'
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-repeat'
     Bundle 'altercation/vim-colors-solarized'
