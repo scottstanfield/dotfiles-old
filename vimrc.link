@@ -266,6 +266,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
 " place this after Bundles have loaded
+" Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
 filetype plugin indent on   
 autocmd FileType, text,markdown setlocal textwidth=72
 
