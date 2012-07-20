@@ -225,6 +225,9 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'tpope/vim-repeat'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'matchit.zip'
+    Bundle 'digitaltoad/vim-jade'
+    Bundle 'kchmck/vim-coffee-script'
+    Bundle 'groenewege/vim-less'
 
     Bundle 'mattn/zencoding-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
@@ -243,9 +246,6 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
     " Bundle: git://github.com/digitaltoad/vim-jade.git
-    " Bundle: git://github.com/kchmck/vim-coffee-script.git
-    " Bundle: git://github.com/groenewege/vim-less.git
-    " Bundle: git://github.com/wavded/vim-stylus.git
 " }}
 
 " Colors (solarized) {{
