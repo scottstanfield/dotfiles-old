@@ -147,7 +147,9 @@
     " Open current Markdown (*.md) file in OS X "Marked" and force redraw
     nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
 
-    nmap <leader>r ggVGg?           " ROT13 is fun!
+	nmap <leader>r gq}				 " *r*eformat current paragraph
+
+"    nmap <leader>r ggVGg?           " ROT13 is fun!
 
     " Show cursor column marker
     nmap <leader>c :set cursorcolumn!<CR>
@@ -264,6 +266,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     "  Usually it's picked because iTerm2 will pass it in.
     " setenv ITERM_PROFILE solarized-dark
 " }}
+
+au FileType python setlocal noexpandtab
 
 " place this after Bundles have loaded
 " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
