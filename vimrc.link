@@ -10,7 +10,7 @@
 "   Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
 "   Also: Annoying vim features: http://www.jrwz.net/technical/vi/mytips.html
 " }}
-
+"
 " Basics {{
     set nocompatible                " be iMproved
     syntax on                       " Enable syntax highlighting
@@ -138,6 +138,9 @@
     nnoremap j gj
     nnoremap k gk
 
+	" I hit Capital K all the time
+	map K <Esc>
+
     :cnoremap Wq wq
 
     " <leader>r to open HTML file in browser  http://goo.gl/yJtG4
@@ -161,6 +164,9 @@
     set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
     map <Space> <PageDown>          
+	
+	" select all text in current buffer (like Command-A)
+	map <leader>a ggVG
 
     nmap <C-j> <C-d>
     nmap <C-k> <C-u>
@@ -242,7 +248,6 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " Bundle: git://github.com/scrooloose/nerdcommenter.git
 
     " Bundle: git://github.com/mileszs/ack.vim.git
-    nmap <leader>a :Ack 
 
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
