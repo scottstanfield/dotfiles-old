@@ -163,6 +163,9 @@
     nmap <leader>w :set list!<CR>
     set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
+	" Runs the current line in the shell. Very dangerous.
+	nmap <leader>; :.w !sh<CR>
+
     map <Space> <PageDown>          
 	
 	" select all text in current buffer (like Command-A)

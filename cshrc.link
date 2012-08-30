@@ -4,20 +4,6 @@
 
 setenv PATH "/usr/local/bin:${PATH}:$HOME/bin:."
 
-# Best example of "complete" config
-# http://dotfiles.org/~dominator22/.tcshrc
-#set complete = enhance
-#complete m				'n/*/f:^*.o/'
-#complete more			'n/*/f:^*.o/'
-#complete cd				'p/1/d/'
-#complete pushd			'p/1/d/'
-#complete pd				'p/1/d/'
-#complete rmdir			'p/*/d/'
-#complete where			'n/*/c/'
-#complete man			'n/*/c/'
-#complete which			'n/*/c/'
-#complete gunzip			'p/*/f:*.{gz,Z,tgz,taz}/'
-
 set history=1000
 set savehist=1000 merge
 set noclobber
@@ -29,7 +15,7 @@ set autolist
 setenv PAGER less
 setenv LESS XFR
 setenv EDITOR vi
-setenv CC /usr/bin/gcc-4.2
+setenv CC /usr/bin/gcc
 
 # ALIASES
 #
@@ -54,8 +40,7 @@ alias vimrc 'vi ~/.vimrc'
 alias tree "find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 alias c clear
-alias m more
-alias cdd "cd -"
+alias m less
 
 alias download 'curl \!:1 -0'
 alias downloadcb 'curl `pbpaste` -0;exit'
@@ -63,8 +48,9 @@ alias downloadcb 'curl `pbpaste` -0;exit'
 alias take 'mkdir \!:1 && cd \!:1'
 # Git
 alias gg 'git commit -v -a -m "\!:*"'
-alias ga 'git add'
 alias gs 'git status'
+
+alias ga 'git add'
 alias g  'git status'
 alias gb 'git branch --color -a'
 alias gbco 'git checkout -b'

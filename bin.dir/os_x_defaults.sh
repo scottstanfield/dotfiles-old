@@ -17,7 +17,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 # Reverse scroll direction like it should be
-defaults write com.apple.swipescrolldirection -bool false
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 ########################################
 # Trackpad 

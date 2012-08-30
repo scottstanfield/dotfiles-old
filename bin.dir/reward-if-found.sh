@@ -1,4 +1,4 @@
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Reward if found: call --------------- or email -------------------------"
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Reward if found: call 510-220-8825 or email scottstanfield@gmail.com"
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
