@@ -283,3 +283,6 @@ au FileType python setlocal noexpandtab
 filetype plugin indent on   
 autocmd FileType, text,markdown setlocal textwidth=72
 
+autocmd FileType stylus set ts=2|set shiftwidth=2|set expandtab
+autocmd FileType javascript set ts=2|set shiftwidth=2|set expandtab
+

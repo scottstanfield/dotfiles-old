@@ -4,6 +4,10 @@
 
 setenv PATH "/usr/local/bin:${PATH}:$HOME/bin:."
 
+setenv GNUTERMAPP /Applications/AquaTerm.app
+setenv GNUTERM aqua
+
+
 set history=1000
 set savehist=1000 merge
 set noclobber
@@ -25,6 +29,8 @@ alias precmd "source ~/bin/setprompt"
 
 alias mv 'mv -i'
 alias cp 'cp -i'
+alias du 'du -sh'	# human readable
+alias grep 'grep --color=always'
 
 alias , cd .. 
 alias ll 'ls -lhG' 
