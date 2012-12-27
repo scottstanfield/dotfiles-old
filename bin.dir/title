@@ -1,0 +1,9 @@
+#!/bin/sh
+# Sets the tab or window title for the iTerm shell
+
+# Magic numbers:
+# 0 = both tab and title
+# 1 = tab text only
+# 2 = title text only
+
+gecho -ne "\e]0;$1\a"

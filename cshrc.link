@@ -2,10 +2,15 @@
 # Can also achive by reordering /etc/paths
 #
 
-setenv PATH "/usr/local/bin:${PATH}:$HOME/bin:."
+setenv PATH "/usr/local/bin:/usr/local/share/npm/bin:/usr/local/opt/coreutils/bin:${PATH}:$HOME/bin:."
+
+eval `gdircolors -c ~/projects/repos/dircolors-solarized/dircolors.ansi-universal`
+setenv LS_OPTIONS "--color=auto --group-directories-first -F"
+alias ls 'gls $LS_OPTIONS'
 
 setenv GNUTERMAPP /Applications/AquaTerm.app
 setenv GNUTERM aqua
+setenv PKG_CONFIG_PATH /usr/X11/lib/pkgconfig
 
 
 set history=1000
@@ -35,7 +40,6 @@ alias grep 'grep --color=always'
 alias , cd .. 
 alias ll 'ls -lhG' 
 alias la 'ls -AG'
-alias ls 'ls -FG'
 alias lla 'ls -lGa'
 alias pd pushd
 alias md mkdir
@@ -64,7 +68,6 @@ alias gca 'git commit -v -a'
 alias gd 'git diff | more'
 alias gp 'git push'
 alias gl 'git pull'
-alias gls 'git ls-files'
 alias gc 'git commit -am'
 
 alias t 'python ~/projects/repos/t/t.py --task-dir ~/projects/tasks --list tasks'

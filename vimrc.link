@@ -60,7 +60,9 @@
     set scrolloff=3                 " Show 3 lines around cursor (more context)
     set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
     set title                       " Set the terminal's title
+	let &titleold=getcwd()			" Show CWD instead of "Thx for Flying VIM"
 " }}
+
 
 " Indenting and tabs {{
     set autoindent          " auto indent new lines
@@ -92,8 +94,8 @@
     set foldlevel=100               " don't autofold anything
     set foldopen=block,hor,tag      " what movements open folds
     set foldopen+=percent,mark
-    set foldopen+=quickfix"
-
+    set foldopen+=quickfix""{{
+"}}
     inoremap <F9> <C-O>za
     noremap <F9> za
     noremap <leader>f za
@@ -103,6 +105,8 @@
 
     nnoremap zc zM
     nnoremap zo zR
+
+	nnoremap gb <C-o>
 
     " From https://github.com/vim-scripts/Efficient-python-folding
     let b:folded = 1
@@ -122,6 +126,13 @@
     set foldtext=SimpleFoldText()
 " }}
 
+" Buffer Management {{
+
+	nnoremap L :bnext<CR>
+	nnoremap H :bprev<CR>
+
+" }}
+
 " Mapping {{
 
     " Semicolon for command mode is quicker than colon
@@ -130,8 +141,8 @@
     " Two quick jj exits insert mode (odd, I know)
     inoremap jj <Esc>
 
-    " Q for formatting paragraph or selection
-    vmap Q gq
+	" Q for formatting paragraph or selection
+	vmap Q gq
     nmap Q gqap
 
     " Sane navigation for wrapped lines
@@ -160,13 +171,17 @@
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
 
     " Show whitespace ¬ ¶
-    nmap <leader>w :set list!<CR>
+    nmap <leader>s :set list!<CR>
     set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
 
 	" Runs the current line in the shell. Very dangerous.
 	nmap <leader>; :.w !sh<CR>
 
-    map <Space> <PageDown>          
+	" <leader>s is easier than :w<CR>
+	nmap <leader>w :w<CR>
+
+
+    nmap <Space> <C-d>          
 	
 	" select all text in current buffer (like Command-A)
 	map <leader>a ggVG
@@ -181,6 +196,9 @@
     vmap < <gv
     vmap <Tab> >gv
     vmap <S-Tab> <gv
+
+	" Add the . command to visual mode
+	vnoremap . :norm.<CR>
 
     " Auto-complete for keywords
     " imap <Tab> <C-N>
@@ -209,7 +227,7 @@ nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr>
 " Automatically insert line breaks in text files
 " au BufEnter *.txt setl tx fo+=n2a linebreak
 
-au BufNewFile,BufRead *.jade set filetype=jade
+au BufNewFile,BufRead *.jade set filetype=jade 
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
@@ -255,6 +273,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
     " Bundle: git://github.com/digitaltoad/vim-jade.git
+	" Bundle: git://github.com/tpope/vim-commentary.git
+	" Bundle: git://github.com/tpope/vim-unimpared.git
 " }}
 
 " Colors (solarized) {{
@@ -284,5 +304,6 @@ filetype plugin indent on
 autocmd FileType, text,markdown setlocal textwidth=72
 
 autocmd FileType stylus set ts=2|set shiftwidth=2|set expandtab
+autocmd FileType jade set ts=2|set shiftwidth=2|set expandtab
 autocmd FileType javascript set ts=2|set shiftwidth=2|set expandtab
 
