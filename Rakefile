@@ -25,7 +25,7 @@ end
 task :vim do
     home = File.expand_path('~')
     `mkdir #{home}/.vim/bundle`
-    `hub clone gmarik/vundle #{home}/.vim/bundle/vundle`
+	`git clone http://github.com/gmarik/vundle #{home}/.vim/bundle/vundle`
     puts "Now run this command from the prompt (ignore errors):"
     puts "\e[1;31mvim +BundleInstall +qall\e[m"
 end
