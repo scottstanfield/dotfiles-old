@@ -1,2 +1,3 @@
 #!/bin/sh
+date
 curl -Ss http://ownthisworld.com | grep -m1 seesharp | sed -e 's/<[^>]*//g'
