@@ -16,6 +16,7 @@
     syntax on                       " Enable syntax highlighting
     let mapleader = ","             " Our free key to prefix custom commands
     set hidden                      " switch buffers w/o saving
+    set encoding=utf-8
 " }}
 
 " Vundle {{
@@ -39,9 +40,11 @@
     set noerrorbells                " No beeping!
     set showcmd                     " Display incomplete commands.
     set visualbell                  " No flashing either.
-    set wildignore=*.jpg,*.gif,*.png
+    set wildignore=*.jpg,*.gif,*.png,*.git,*.gem,*.zip,*.tar.gz
     set wildmenu                    " Enhanced command line completion.
-    nmap <silent> <leader>/ :nohl<CR>
+
+    " After searching with /, hitting <leader>/ toggles highlight
+    nmap <silent> <leader>/ :set hlsearch! hlsearch?<CR>
 " }}
 
 " UI {{
@@ -50,7 +53,6 @@
     set nostartofline               " Searches leave cursor on same column
     set ignorecase                  " Case-insensitive searching.
     set incsearch                   " Highlight matches as you type.
-    " set laststatus=2                " Show the status line all the time
     set lazyredraw                  " No redraw during macro execution
     set number                      " Show line numbers.
     set ruler                       " Show cursor position.
@@ -58,16 +60,18 @@
     set showmode                    " Display the mode you're in.
     set smartcase                   " But case-sensitive if has caps
     set scrolloff=3                 " Show 3 lines around cursor (more context)
-    set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"    set laststatus=2                " Show the status line all the time
+"    set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+
     set title                       " Set the terminal's title
-	let &titleold=getcwd()			" Show CWD instead of "Thx for Flying VIM"
+    let &titleold=getcwd()          " Show CWD instead of "Thx for Flying VIM"
 " }}
 
 
 " Indenting and tabs {{
     set autoindent          " auto indent new lines
     set smartindent         " be smart about it
-    set wrap                " do not wrap lines please
+    set nowrap              " do not wrap lines please
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4        " no clue what this does
@@ -106,7 +110,7 @@
     nnoremap zc zM
     nnoremap zo zR
 
-	nnoremap gb <C-o>
+    nnoremap gb <C-o>
 
     " From https://github.com/vim-scripts/Efficient-python-folding
     let b:folded = 1
@@ -128,8 +132,8 @@
 
 " Buffer Management {{
 
-	nnoremap L :bnext<CR>
-	nnoremap H :bprev<CR>
+    nnoremap L :bnext<CR>
+    nnoremap H :bprev<CR>
 
 " }}
 
@@ -141,16 +145,20 @@
     " Two quick jj exits insert mode (odd, I know)
     inoremap jj <Esc>
 
-	" Q for formatting paragraph or selection
-	vmap Q gq
+    " Q for formatting paragraph or selection
+    vmap Q gq
     nmap Q gqap
 
     " Sane navigation for wrapped lines
     nnoremap j gj
     nnoremap k gk
 
-	" I hit Capital K all the time
-	map K <Esc>
+    " I hit Capital K all the time
+    map K <Esc>
+
+    " ideas taken from Janus
+    " toggle line wrapping modes
+    nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
     :cnoremap Wq wq
 
@@ -161,7 +169,7 @@
     " Open current Markdown (*.md) file in OS X "Marked" and force redraw
     nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
 
-	nmap <leader>r gq}				 " *r*eformat current paragraph
+    nmap <leader>r gq}               " *r*eformat current paragraph
 
 "    nmap <leader>r ggVGg?           " ROT13 is fun!
 
@@ -172,19 +180,23 @@
 
     " Show whitespace ¬ ¶
     nmap <leader>s :set list!<CR>
-    set listchars=eol:¬,tab:⇥»,trail:¤,nbsp:_
+    set listchars=""            " reset listchars
+    set listchars=eol:¬,tab:⧁⧂,trail:▫,nbsp:_
+    set listchars+=extends:»
+    set listchars+=precedes:«
+    " set listchars=eol:¬,tab:⧂⇥»,trail:▫,nbsp:_
+    
+    " Runs the current line in the shell. Very dangerous.
+    nmap <leader>; :.w !sh<CR>   
 
-	" Runs the current line in the shell. Very dangerous.
-	nmap <leader>; :.w !sh<CR>
-
-	" <leader>s is easier than :w<CR>
-	nmap <leader>w :w<CR>
+    " <leader>s is easier than :w<CR>
+    nmap <leader>w :w<CR>
 
 
     nmap <Space> <C-d>          
-	
-	" select all text in current buffer (like Command-A)
-	map <leader>a ggVG
+    
+    " select all text in current buffer (like Command-A)
+    map <leader>a ggVG
 
     nmap <C-j> <C-d>
     nmap <C-k> <C-u>
@@ -197,8 +209,8 @@
     vmap <Tab> >gv
     vmap <S-Tab> <gv
 
-	" Add the . command to visual mode
-	vnoremap . :norm.<CR>
+    " Add the . command to visual mode
+    vnoremap . :norm.<CR>
 
     " Auto-complete for keywords
     " imap <Tab> <C-N>
@@ -255,13 +267,16 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'digitaltoad/vim-jade'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'groenewege/vim-less'
-	Bundle 'wavded/vim-stylus'
+    Bundle 'wavded/vim-stylus'
 
     Bundle 'mattn/zencoding-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
 
     Bundle 'scrooloose/nerdtree'
-    nmap <leader>t :NERDTree<cr>
+    " nmap <leader>t :NERDTree<cr>
+
+    Bundle 'jistr/vim-nerdtree-tabs'
+    nmap <leader>n <plug>NERDTreeTabsToggle<CR>
 
     " Uncomment to use Jamis Buck's file opening plugin
     "map <Leader>t :FuzzyFinderTextMate<Enter>
@@ -273,8 +288,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
     " Bundle: git://github.com/digitaltoad/vim-jade.git
-	" Bundle: git://github.com/tpope/vim-commentary.git
-	" Bundle: git://github.com/tpope/vim-unimpared.git
+    " Bundle: git://github.com/tpope/vim-commentary.git
+    " Bundle: git://github.com/tpope/vim-unimpared.git
 " }}
 
 " Colors (solarized) {{
@@ -306,4 +321,9 @@ autocmd FileType, text,markdown setlocal textwidth=72
 autocmd FileType stylus set ts=2|set shiftwidth=2|set expandtab
 autocmd FileType jade set ts=2|set shiftwidth=2|set expandtab
 autocmd FileType javascript set ts=2|set shiftwidth=2|set expandtab
+
+
+" Jump to the last position of the cursor
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 
