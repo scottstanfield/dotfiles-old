@@ -57,7 +57,8 @@ alias downloadcb 'curl `pbpaste` -0;exit'
 
 alias take 'mkdir \!:1 && cd \!:1'
 # Git
-alias gg 'git commit -v -a -m "\!:*"'
+alias gg 'git commit -v -m "\!:*"'
+alias gga 'git commit -v -a -m "\!:*"'
 alias gs 'git status'
 
 alias ga 'git add'
@@ -69,6 +70,8 @@ alias gd 'git diff | more'
 alias gp 'git push'
 alias gl 'git pull'
 alias gc 'git commit -am'
+
+alias gitlog 'git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
 alias t 'python ~/projects/repos/t/t.py --task-dir ~/projects/tasks --list tasks'
 alias qa 'ack -cl'		# quiet ack
