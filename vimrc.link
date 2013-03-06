@@ -9,6 +9,7 @@
 "   http://peox.net/articles/vimconfig.html
 "   Also: https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
 "   Also: Annoying vim features: http://www.jrwz.net/technical/vi/mytips.html
+"   Don't use the bare *map feature: http://bit.ly/YMAHNv
 " }}
 "
 " Basics {{
@@ -45,7 +46,7 @@
     set wildmenu                    " Enhanced command line completion.
 
     " After searching with /, hitting <leader>/ toggles highlight
-    nmap <silent> <leader>/ :set hlsearch! hlsearch?<CR>
+    nnoremap <silent> <leader>/ :set hlsearch! hlsearch?<CR>
 " }}
 
 " UI {{
@@ -136,10 +137,10 @@
     nnoremap L :bnext<CR>
     nnoremap H :bprev<CR>
 
-	nmap <silent> <S-Up> :wincmd k<CR>
-	nmap <silent> <S-Down> :wincmd j<CR>
-	nmap <silent> <S-Left> :wincmd h<CR>
-	nmap <silent> <S-Right> :wincmd l<CR>
+	nnoremap <silent> <S-Up> :wincmd k<CR>
+	nnoremap <silent> <S-Down> :wincmd j<CR>
+	nnoremap <silent> <S-Left> :wincmd h<CR>
+	nnoremap <silent> <S-Right> :wincmd l<CR>
 
 " }}
 
@@ -152,19 +153,19 @@
     inoremap jj <Esc>
 
     " Q for formatting paragraph or selection
-    vmap Q gq
-    nmap Q gqap
+    vnoremap Q gq
+    nnoremap Q gqap
 
     " Sane navigation for wrapped lines
     nnoremap j gj
     nnoremap k gk
 
     " I hit Capital K all the time
-    map K <Esc>
+    noremap K <Esc>
 
     " ideas taken from Janus
     " toggle line wrapping modes
-    nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
+    nnoremap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
     :cnoremap Wq wq
 
@@ -175,17 +176,17 @@
     " Open current Markdown (*.md) file in OS X "Marked" and force redraw
     nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
 
-    nmap <leader>r gq}               " *r*eformat current paragraph
+    nnoremap <leader>r gq}               " *r*eformat current paragraph
 
 "    nmap <leader>r ggVGg?           " ROT13 is fun!
 
     " Show cursor column marker
-    nmap <leader>c :set cursorcolumn!<CR>
-    nmap <leader>l :set cursorline!<CR>
+    nnoremap <leader>c :set cursorcolumn!<CR>
+    nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
 
     " Show whitespace ¬ ¶
-    nmap <leader>s :set list!<CR>
+    nnoremap <leader>s :set list!<CR>
     set listchars=""            " reset listchars
     set listchars=eol:¬,tab:⧁⧂,trail:▫,nbsp:_
     set listchars+=extends:»
@@ -193,34 +194,34 @@
     " set listchars=eol:¬,tab:⧂⇥»,trail:▫,nbsp:_
     
     " Runs the current line in the shell. Very dangerous.
-    nmap <leader>; :.w !sh<CR>   
+    nnoremap <leader>; :.w !sh<CR>   
 
     " <leader>s is easier than :w<CR>
-    nmap <leader>w :w<CR>
+    nnoremap <leader>w :w<CR>
 
     " select all text in current buffer (like Command-A)
-    map <leader>a ggVG
+    noremap <leader>a ggVG
 
-    nmap <C-j> <C-d>
-    nmap <C-k> <C-u>
+    nnoremap <C-j> <C-d>
+    nnoremap <C-k> <C-u>
 
-    nmap <leader>b <C-w>l
+    nnoremap <leader>b <C-w>l
 
     " Indent and outdent now > and < keep the visual selection
-    vmap > >gv
-    vmap < <gv
-    vmap <Tab> >gv
-    vmap <S-Tab> <gv
+    vnoremap > >gv
+    vnoremap < <gv
+    vnoremap <Tab> >gv
+    vnoremap <S-Tab> <gv
 
     " Add the . command to visual mode
     vnoremap . :norm.<CR>
 
     " Auto-complete for keywords
     " imap <Tab> <C-N>
-    imap <S-Tab> <C-P>
+    inoremap <S-Tab> <C-P>
 
     " Execute buffer in Python 
-    nmap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
 " }}
 
 " Skeleton files with todo templates {{
@@ -247,15 +248,15 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
 " Tabbed Windows {{
-    map <leader>tt :tabnew<cr>
-    map <leader>te :tabedit
-    map <leader>tc :tabclose<cr>
-    map <leader>to :tabonly<cr>
-    map <leader>tn :tabnext<cr>
-    map <leader>tp :tabprevious<cr>
-    map <leader>tf :tabfirst<cr>
-    map <leader>tl :tablast<cr>
-    map <leader>tm :tabmove
+    noremap <leader>tt :tabnew<cr>
+    noremap <leader>te :tabedit
+    noremap <leader>tc :tabclose<cr>
+    noremap <leader>to :tabonly<cr>
+    noremap <leader>tn :tabnext<cr>
+    noremap <leader>tp :tabprevious<cr>
+    noremap <leader>tf :tabfirst<cr>
+    noremap <leader>tl :tablast<cr>
+    noremap <leader>tm :tabmove
 " }}
 
 " Bundles {{
@@ -280,7 +281,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " nmap <leader>t :NERDTree<cr>
 
     Bundle 'jistr/vim-nerdtree-tabs'
-    nmap <leader>n <plug>NERDTreeTabsToggle<CR>
+    nnoremap <leader>n <plug>NERDTreeTabsToggle<CR>
 
     " Uncomment to use Jamis Buck's file opening plugin
     "map <Leader>t :FuzzyFinderTextMate<Enter>
