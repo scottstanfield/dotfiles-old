@@ -85,7 +85,7 @@
     " set fo-=n
 
     " Necessary for previous 4 lines http://goo.gl/bxpIO
-    " autocmd BufNewFile,BufRead * setlocal formatoptions=cqnt
+    " au BufNewFile,BufRead * setlocal formatoptions=cqnt
 
     nmap <leader>1 :set et<cr>:retab<cr>
     nmap <leader>2 :set noet<cr>:retab!<cr>
@@ -126,7 +126,7 @@
         endif
     endfunction
 
-    function SimpleFoldText() 
+    function! SimpleFoldText() 
         return getline(v:foldstart).' '
     endfunction " }
     set foldtext=SimpleFoldText()
@@ -146,11 +146,15 @@
 
 " Mapping {{
 
+	" Make it easier to (make it easier to (make it easier to (edit text)))
+	nnoremap <leader>vi :split $MYVIMRC<cr>
+	nnoremap <leader>vs :source $MYVIMRC<cr>
+
     " Semicolon for command mode is quicker than colon
     nnoremap ; :
 
     " Two quick jj exits insert mode (odd, I know)
-    inoremap jj <Esc>
+    inoremap jk <Esc>
 
     " Q for formatting paragraph or selection
     vnoremap Q gq
@@ -226,9 +230,9 @@
 
 " Skeleton files with todo templates {{
 "use .vim/skel/template.html template for editing new files that match *.html
-" autocmd! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
+" au! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
 
-autocmd! BufNewFile * call LoadTemplate() 
+au! BufNewFile * call LoadTemplate() 
 function! LoadTemplate() 
         silent! 0r ~/.vim/skel/template.%:e 
         " Highlight %VAR% placeholders with the Todo colour group 
@@ -321,14 +325,16 @@ au FileType python setlocal noexpandtab
 " place this after Bundles have loaded
 " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
 filetype plugin indent on   
-autocmd FileType, text,markdown setlocal textwidth=72
+au FileType, text,markdown setlocal textwidth=72
 
-autocmd FileType stylus set ts=2|set shiftwidth=2|set expandtab
-autocmd FileType jade set ts=2|set shiftwidth=2|set expandtab
-autocmd FileType javascript set ts=2|set shiftwidth=2|set expandtab
+au FileType stylus set ts=2|set shiftwidth=2|set expandtab
+au FileType jade set ts=2|set shiftwidth=2|set expandtab
+au FileType javascript set ts=2|set shiftwidth=2|set expandtab
 
 
 " Jump to the last position of the cursor
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Turn off line wrapping when working on HTML files
+au BufNewFile,BufRead *.html setlocal nowrap
 
