@@ -16,9 +16,9 @@
     set nocompatible                " be iMproved
     syntax on                       " Enable syntax highlighting
     let mapleader = ","             " Our free key to prefix custom commands
+	let localleader = "\\"
     set hidden                      " switch buffers w/o saving
     set encoding=utf-8
-	set shell=/bin/sh
 " }}
 
 " Vundle {{
@@ -154,7 +154,7 @@
     nnoremap ; :
 
     " Two quick jj exits insert mode (odd, I know)
-    inoremap jk <Esc>
+    inoremap jj <Esc>
 
     " Q for formatting paragraph or selection
     vnoremap Q gq
@@ -320,21 +320,26 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " setenv ITERM_PROFILE solarized-dark
 " }}
 
-au FileType python setlocal noexpandtab
+" Auto Commands autocmds {{
 
-" place this after Bundles have loaded
-" Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
-filetype plugin indent on   
-au FileType, text,markdown setlocal textwidth=72
+" Wrapping autocmd in a group per http://bit.ly/15wKRrM
+augroup my_au
+	autocmd!
+	au FileType python setlocal noexpandtab
 
-au FileType stylus set ts=2|set shiftwidth=2|set expandtab
-au FileType jade set ts=2|set shiftwidth=2|set expandtab
-au FileType javascript set ts=2|set shiftwidth=2|set expandtab
+	" place this after Bundles have loaded
+	" Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
+	filetype plugin indent on   
+	au FileType, text,markdown setlocal textwidth=72
 
+	au FileType stylus set ts=2|set shiftwidth=2|set expandtab
+	au FileType jade set ts=2|set shiftwidth=2|set expandtab
+	au FileType javascript set ts=2|set shiftwidth=2|set expandtab
 
-" Jump to the last position of the cursor
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+	" Jump to the last position of the cursor
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
+	" Turn off line wrapping when working on HTML files
+	au BufNewFile,BufRead *.html setlocal nowrap
+augroup END
 
-" Turn off line wrapping when working on HTML files
-au BufNewFile,BufRead *.html setlocal nowrap
-
+"}}
