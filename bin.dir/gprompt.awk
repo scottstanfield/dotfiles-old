@@ -10,6 +10,7 @@ BEGIN { branch = ""; prefix=""; suffix="" }
 /Changes to be committed/ { prefix = prefix  "~"; }
 /Changes not staged/ { prefix = prefix  "*"; }
 /branch is ahead/ { suffix = suffix "+"}
+/branch is behind/ { suffix = suffix "-"}
 
 END { if (branch != "") { print " (" prefix branch suffix ")"} }
 

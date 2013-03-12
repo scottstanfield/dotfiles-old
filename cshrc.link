@@ -12,6 +12,7 @@ setenv GNUTERMAPP /Applications/AquaTerm.app
 setenv GNUTERM aqua
 setenv PKG_CONFIG_PATH /usr/X11/lib/pkgconfig
 
+set cdpath = (/Users/scott/projects/ /Users/scott/projects/msrd.io/public)
 
 set history=1000
 set savehist=1000 merge
@@ -47,7 +48,8 @@ alias h history
 
 alias vimrc 'vi ~/.vimrc'
 
-alias tree "find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+# `brew install tree` instead
+# alias tree "find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 alias c clear
 alias m less
@@ -57,19 +59,16 @@ alias downloadcb 'curl `pbpaste` -0;exit'
 
 alias take 'mkdir \!:1 && cd \!:1'
 # Git
-alias gg 'git commit -v -m "\!:*"'
+# alias gg 'git commit -v -m "\!:*"'
+alias gg 'git commit  -m "\!:*"'
 alias gga 'git commit -v -a -m "\!:*"'
 alias gs 'git status'
+alias gb 'git branch -av'
 
 alias ga 'git add'
-alias g  'git status'
-alias gb 'git branch --color -a'
 alias gbco 'git checkout -b'
 alias gca 'git commit -v -a'
 alias gd 'git diff | more'
-alias gp 'git push'
-alias gl 'git pull'
-alias gc 'git commit -am'
 
 alias gitlog 'git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
@@ -98,4 +97,8 @@ alias taillog "tail -F /var/log/system.log | grcat conf.log ;"
 
 # map ver (like Windows)
 alias ver sw_ver
+
+if( $?tcsh ) then
+	bindkey "^W" backward-delete-word
+endif
 

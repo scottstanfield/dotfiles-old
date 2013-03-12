@@ -16,9 +16,10 @@
     set nocompatible                " be iMproved
     syntax on                       " Enable syntax highlighting
     let mapleader = ","             " Our free key to prefix custom commands
-	let localleader = "\\"
+    let localleader = "\\"
     set hidden                      " switch buffers w/o saving
     set encoding=utf-8
+	set shell=/bin/sh
 " }}
 
 " Vundle {{
@@ -104,13 +105,13 @@
 
     inoremap <F9> <C-O>za
     noremap <F9> za
-    vnoremap <space> zf				" wrap a visual block with a fold
-	nnoremap <space> za				" toggle fold with space
+    vnoremap <space> zf             " wrap a visual block with a fold
+    nnoremap <space> za             " toggle fold with space
     noremap <leader>f za
 
     nnoremap <F10> :silent call ToggleFold()<CR>
-	nnoremap <leader>fc zM			" close all folds
-	nnoremap <leader>fo zR			" open all folds
+    nnoremap <leader>fc zM          " close all folds
+    nnoremap <leader>fo zR          " open all folds
 
     nnoremap gb <C-o>
 
@@ -137,24 +138,24 @@
     nnoremap L :bnext<CR>
     nnoremap H :bprev<CR>
 
-	nnoremap <silent> <S-Up> :wincmd k<CR>
-	nnoremap <silent> <S-Down> :wincmd j<CR>
-	nnoremap <silent> <S-Left> :wincmd h<CR>
-	nnoremap <silent> <S-Right> :wincmd l<CR>
+    nnoremap <silent> <S-Up> :wincmd k<CR>
+    nnoremap <silent> <S-Down> :wincmd j<CR>
+    nnoremap <silent> <S-Left> :wincmd h<CR>
+    nnoremap <silent> <S-Right> :wincmd l<CR>
 
 " }}
 
 " Mapping {{
 
-	" Make it easier to (make it easier to (make it easier to (edit text)))
-	nnoremap <leader>vi :split $MYVIMRC<cr>
-	nnoremap <leader>vs :source $MYVIMRC<cr>
+    " Make it easier to (make it easier to (make it easier to (edit text)))
+    nnoremap <leader>vi :split $MYVIMRC<cr>
+    nnoremap <leader>vs :source $MYVIMRC<cr>
 
     " Semicolon for command mode is quicker than colon
     nnoremap ; :
 
-    " Two quick jj exits insert mode (odd, I know)
-    inoremap jj <Esc>
+    " Two quick jk exits insert mode (odd, I know)
+    inoremap jk <Esc>
 
     " Q for formatting paragraph or selection
     vnoremap Q gq
@@ -276,16 +277,18 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'groenewege/vim-less'
     Bundle 'wavded/vim-stylus'
-	Bundle 'airblade/vim-gitgutter'
+	
+	" shows git diff marks in the gutter
+    " Bundle 'airblade/vim-gitgutter'
 
     Bundle 'mattn/zencoding-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
 
     Bundle 'scrooloose/nerdtree'
-    " nmap <leader>t :NERDTree<cr>
+    " nnoremap <leader>nn :NERDTree<cr>
 
     Bundle 'jistr/vim-nerdtree-tabs'
-    nnoremap <leader>n <plug>NERDTreeTabsToggle<CR>
+    nnoremap <leader>n :NERDTreeTabsToggle<CR>
 
     " Uncomment to use Jamis Buck's file opening plugin
     "map <Leader>t :FuzzyFinderTextMate<Enter>
@@ -324,22 +327,22 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
 " Wrapping autocmd in a group per http://bit.ly/15wKRrM
 augroup my_au
-	autocmd!
-	au FileType python setlocal noexpandtab
+    autocmd!
+    au FileType python setlocal noexpandtab
 
-	" place this after Bundles have loaded
-	" Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
-	filetype plugin indent on   
-	au FileType, text,markdown setlocal textwidth=72
+    " place this after Bundles have loaded
+    " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
+    filetype plugin indent on   
+    au FileType, text,markdown setlocal textwidth=72
 
-	au FileType stylus set ts=2|set shiftwidth=2|set expandtab
-	au FileType jade set ts=2|set shiftwidth=2|set expandtab
-	au FileType javascript set ts=2|set shiftwidth=2|set expandtab
+    au FileType stylus set ts=2|set shiftwidth=2|set expandtab
+    au FileType jade set ts=2|set shiftwidth=2|set expandtab
+    au FileType javascript set ts=4|set shiftwidth=4|set expandtab
 
-	" Jump to the last position of the cursor
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
-	" Turn off line wrapping when working on HTML files
-	au BufNewFile,BufRead *.html setlocal nowrap
+    " Jump to the last position of the cursor
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
+    " Turn off line wrapping when working on HTML files
+    au BufNewFile,BufRead *.html setlocal nowrap
 augroup END
 
 "}}
