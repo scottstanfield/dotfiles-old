@@ -80,6 +80,7 @@
     set shiftwidth=4        " no clue what this does
     set shiftround          " if spaces, TAB maps to right spot
 
+
     " set fo+=c             " Auto-wrap comments, inserting comment leader
     " set fo+=t               " Auto-wrap text using textwidth
     " set fo-=r               " Do not auto insert a comment leader after <Enter>
@@ -189,20 +190,25 @@
     nnoremap <leader>c :set cursorcolumn!<CR>
     nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
+	
+	" From http://vimcasts.org/episodes/show-invisibles/
+	ab heart ❤
 
     " Show whitespace ¬ ¶
-    nnoremap <leader>s :set list!<CR>
+    nnoremap <leader>ws :set list!<CR>
     set listchars=""            " reset listchars
-    set listchars=eol:¬,tab:⧁⧂,trail:▫,nbsp:_
+    set listchars+=eol:¬
+	set listchars+=tab:▸\ 
+	set listchars+=nbsp:_
     set listchars+=extends:»
     set listchars+=precedes:«
-    " set listchars=eol:¬,tab:⧂⇥»,trail:▫,nbsp:_
+    " set listchars=eol:¬,tab:⧂⇥⇥»,trail:▫,nbsp:_
     
     " Runs the current line in the shell. Very dangerous.
     nnoremap <leader>; :.w !sh<CR>   
 
     " <leader>s is easier than :w<CR>
-    nnoremap <leader>w :w<CR>
+    nnoremap <leader>s :w<CR>
 
     " select all text in current buffer (like Command-A)
     noremap <leader>a ggVG
@@ -338,6 +344,7 @@ augroup my_au
     au FileType stylus set ts=2|set shiftwidth=2|set expandtab
     au FileType jade set ts=2|set shiftwidth=2|set expandtab
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
+    au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
 
     " Jump to the last position of the cursor
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
