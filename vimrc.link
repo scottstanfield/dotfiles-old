@@ -52,7 +52,7 @@
 
 " UI {{
     let loaded_matchparen = 1       " Just use % instead of auto paren matching
-    set colorcolumn=80              " vertical line at 80 cols
+    " set colorcolumn=80            " vertical line at 80 cols
     set nostartofline               " Searches leave cursor on same column
     set ignorecase                  " Case-insensitive searching.
     set incsearch                   " Highlight matches as you type.
@@ -291,10 +291,10 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     let g:user_zen_expandabbr_key = '<c-e>'
 
     Bundle 'scrooloose/nerdtree'
-    " nnoremap <leader>nn :NERDTree<cr>
+    nnoremap <leader>nt :NERDTree<cr>
 
     Bundle 'jistr/vim-nerdtree-tabs'
-    nnoremap <leader>n :NERDTreeTabsToggle<CR>
+    nnoremap <leader>nn :NERDTreeTabsToggle<CR>
 
     " Uncomment to use Jamis Buck's file opening plugin
     "map <Leader>t :FuzzyFinderTextMate<Enter>
@@ -339,7 +339,7 @@ augroup my_au
     " place this after Bundles have loaded
     " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
     filetype plugin indent on   
-    au FileType, text,markdown setlocal textwidth=72
+    au FileType, text,markdown setlocal textwidth=72 colorcolumn=80
 
     au FileType stylus set ts=2|set shiftwidth=2|set expandtab
     au FileType jade set ts=2|set shiftwidth=2|set expandtab

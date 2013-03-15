@@ -11,6 +11,7 @@ alias ls 'gls $LS_OPTIONS'
 setenv GNUTERMAPP /Applications/AquaTerm.app
 setenv GNUTERM aqua
 setenv PKG_CONFIG_PATH /usr/X11/lib/pkgconfig
+setenv RBENV_ROOT /usr/local/var/rbenv
 
 set cdpath = (/Users/scott/projects/ /Users/scott/projects/msrd.io/public)
 
@@ -102,3 +103,4 @@ if( $?tcsh ) then
 	bindkey "^W" backward-delete-word
 endif
 
+alias gdr grunt debug-run --debug
