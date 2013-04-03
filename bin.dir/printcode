@@ -1,4 +1,4 @@
 #!/bin/bash
 TFILE="/tmp/$RANDOM.ps"
-enscript -rG --line-numbers -o $TFILE $1
+enscript -rG --line-numbers -o $TFILE $*
 open -a preview $TFILE
