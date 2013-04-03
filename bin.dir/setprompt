@@ -17,16 +17,15 @@
 #   Original from http://acts.as.streeteasy.com/archives/2007/12/19/git_in_your_prompt/
 #   Modified for tcsh by Geoffrey Grosenbach http://peepcode.com
 
-
 set ptail = "»"
-# set ptail = "ϕ"
-# set ptail = "%"
 
 if ! $?ITERM_PROFILE then
 	set profile="solarized-light"
 else
 	set profile=$ITERM_PROFILE
 endif
+
+# Change the color in the prompt based on the ambient profile
 
 switch ($profile)
 	case 'solarized-dark':
@@ -49,8 +48,11 @@ setenv GIT_PROMPT  "git status |& git-prompt.awk"
 # history time path
 #set p1="%B%h%b %t:%B$color_path%~$color_normal%b " 
 
-# history time path
-set p1="%B%h%b %m:%B$color_path%~$color_normal%b " 
+# full path after home
+# set p1="%B%h%b %m:%B$color_path%~$color_normal%b " 
+
+# show only 3 trailing folders http://www.nparikh.org/unix/prompt.php#tcsh
+set p1="%B%h%b %m:%B$color_path%c3$color_normal%b " 
 
 # history time computer path
 # set p1="%h %t %B%m%b:%B$color_path%~$color_normal%b " 
