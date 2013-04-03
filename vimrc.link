@@ -19,7 +19,7 @@
     let localleader = "\\"
     set hidden                      " switch buffers w/o saving
     set encoding=utf-8
-	set shell=/bin/sh
+  set shell=/bin/sh
 " }}
 
 " Vundle {{
@@ -190,16 +190,16 @@
     nnoremap <leader>c :set cursorcolumn!<CR>
     nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
-	
-	" From http://vimcasts.org/episodes/show-invisibles/
-	ab heart ❤
+  
+    " From http://vimcasts.org/episodes/show-invisibles/
+    ab heart ❤
 
-    " Show whitespace ¬ ¶
-    nnoremap <leader>ws :set list!<CR>
+    " Toggle whiteSpace ¬ ¶
+    nnoremap <leader>ts :set list!<CR>
     set listchars=""            " reset listchars
     set listchars+=eol:¬
-	set listchars+=tab:▸\ 
-	set listchars+=nbsp:_
+    set listchars+=tab:▸\ 
+    set listchars+=nbsp:_
     set listchars+=extends:»
     set listchars+=precedes:«
     " set listchars=eol:¬,tab:⧂⇥⇥»,trail:▫,nbsp:_
@@ -208,7 +208,7 @@
     nnoremap <leader>; :.w !sh<CR>   
 
     " <leader>s is easier than :w<CR>
-    nnoremap <leader>s :w<CR>
+    nnoremap <leader>w :w<CR>
 
     " select all text in current buffer (like Command-A)
     noremap <leader>a ggVG
@@ -259,6 +259,10 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
 " Tabbed Windows {{
+	nnoremap + :tabnew<CR>
+	nnoremap <Tab> :tabn<CR>
+    nnoremap <S-Tab> :tabp<CR>
+
     noremap <leader>tt :tabnew<cr>
     noremap <leader>te :tabedit
     noremap <leader>tc :tabclose<cr>
@@ -283,8 +287,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'groenewege/vim-less'
     Bundle 'wavded/vim-stylus'
-	
-	" shows git diff marks in the gutter
+  
+  " shows git diff marks in the gutter
     " Bundle 'airblade/vim-gitgutter'
 
     Bundle 'mattn/zencoding-vim'
