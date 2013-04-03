@@ -1,1 +1,2 @@
+#!/bin/sh
 curl -s http://www.crh.noaa.gov/data/MTR/AFDMTR | sed -n '/^AREA/,/&&/ p' 
