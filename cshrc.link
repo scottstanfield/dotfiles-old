@@ -38,6 +38,7 @@ alias mv 'mv -i'
 alias cp 'cp -i'
 alias du 'du -sh'	# human readable
 alias grep 'grep --color=always'
+alias lynx 'lynx --accept_all_cookies'
 
 alias , cd .. 
 alias ll 'ls -lhG' 
@@ -103,4 +104,9 @@ if( $?tcsh ) then
 	bindkey "^W" backward-delete-word
 endif
 
-alias gdr grunt debug-run --debug
+alias gdr 'grunt debug-run --debug'
+
+# open all files in tabbed mode, then use TAB to skip through them
+alias vi 'vi -p'
+
+
