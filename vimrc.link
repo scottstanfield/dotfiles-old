@@ -198,7 +198,7 @@
     nnoremap <leader>ts :set list!<CR>
     set listchars=""            " reset listchars
     set listchars+=eol:¬
-    set listchars+=tab:▸\ 
+    set listchars+=tab:▸\.
     set listchars+=nbsp:_
     set listchars+=extends:»
     set listchars+=precedes:«
@@ -294,11 +294,11 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'mattn/zencoding-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
 
-    Bundle 'scrooloose/nerdtree'
-    nnoremap <leader>nt :NERDTree<cr>
+    " Bundle 'scrooloose/nerdtree'
+    " nnoremap <leader>nt :NERDTree<cr>
 
-    Bundle 'jistr/vim-nerdtree-tabs'
-    nnoremap <leader>nn :NERDTreeTabsToggle<CR>
+    " Bundle 'jistr/vim-nerdtree-tabs'
+    " nnoremap <leader>nn :NERDTreeTabsToggle<CR>
 
     " Uncomment to use Jamis Buck's file opening plugin
     "map <Leader>t :FuzzyFinderTextMate<Enter>
