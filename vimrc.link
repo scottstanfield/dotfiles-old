@@ -50,6 +50,17 @@
     nnoremap <silent> <leader>/ :set hlsearch! hlsearch?<CR>
 " }}
 
+" Install custom font "Monaco for Powerline" first
+" Menlo  https://gist.github.com/sjl/1627888
+" Inconsolata and Menlo:  https://gist.github.com/qrush/1595572
+" Monaco  https://gist.github.com/baopham/1838072
+
+if has('gui_running')
+    set guioptions=aAce
+    set guifont=Monaco\ for\ Powerline:h14
+    set columns=100
+endif
+
 " UI {{
     let loaded_matchparen = 1       " Just use % instead of auto paren matching
     " set colorcolumn=80            " vertical line at 80 cols
@@ -63,7 +74,8 @@
     set showmode                    " Display the mode you're in.
     set smartcase                   " But case-sensitive if has caps
     set scrolloff=3                 " Show 3 lines around cursor (more context)
-"    set laststatus=2                " Show the status line all the time
+    set laststatus=2                " Show the status line all the time
+    set noshowmode                  " hide the default mode text (e.g. -- INSERT --)
 "    set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
     set title                       " Set the terminal's title
@@ -148,6 +160,7 @@
 
 " Mapping {{
 
+
     " Make it easier to (make it easier to (make it easier to (edit text)))
     nnoremap <leader>vi :split $MYVIMRC<cr>
     nnoremap <leader>vs :source $MYVIMRC<cr>
@@ -194,14 +207,15 @@
     " From http://vimcasts.org/episodes/show-invisibles/
     ab heart ❤
 
-    " Toggle whiteSpace ¬ ¶
-    nnoremap <leader>ts :set list!<CR>
+    " Toggle invisible whiteSpace ¬ ¶
+    nnoremap <leader>i :set list!<CR>
     set listchars=""            " reset listchars
     set listchars+=eol:¬
     set listchars+=tab:▸\.
     set listchars+=nbsp:_
     set listchars+=extends:»
     set listchars+=precedes:«
+	set listchars+=trail:▫
     " set listchars=eol:¬,tab:⧂⇥⇥»,trail:▫,nbsp:_
     
     " Runs the current line in the shell. Very dangerous.
@@ -259,8 +273,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
 " Tabbed Windows {{
-	nnoremap + :tabnew<CR>
-	nnoremap <Tab> :tabn<CR>
+    nnoremap + :tabnew<CR>
+    nnoremap <Tab> :tabn<CR>
     nnoremap <S-Tab> :tabp<CR>
 
     noremap <leader>tt :tabnew<cr>
@@ -287,7 +301,20 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'groenewege/vim-less'
     Bundle 'wavded/vim-stylus'
+    Bundle 'puppetlabs/puppet-syntax-vim'
+    Bundle 'tpope/vim-commentary'
+    Bundle 'mileszs/ack.vim'
+
+    Bundle 'scrooloose/syntastic'
+    let g:syntastic_javascript_checkers = ['jshint']
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_warning_symbol='⚠'
+    " let g:syntastic_auto_jump=1
+    " nnoremap <leader>js :w<CR>:make<CR>:cw<CR>
   
+    Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+    let g:Powerline_symtoles = 'fancy'
+
   " shows git diff marks in the gutter
     " Bundle 'airblade/vim-gitgutter'
 
@@ -310,7 +337,6 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
     " Bundle: git://github.com/digitaltoad/vim-jade.git
-    " Bundle: git://github.com/tpope/vim-commentary.git
     " Bundle: git://github.com/tpope/vim-unimpared.git
 " }}
 
@@ -350,6 +376,13 @@ augroup my_au
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
 
+    " % npm install node-jslint -g
+"   augroup FileType javascript
+"       set makeprg=jshint\ %
+"       set errorformat=%ELine %l:%c,%Z\\s%#Reason: %m,%C%.%#,%f: line %l\, col %c\, %m,%-G%.%#
+"   augroup end
+    
+
     " Jump to the last position of the cursor
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
     " Turn off line wrapping when working on HTML files
@@ -357,3 +390,13 @@ augroup my_au
 augroup END
 
 "}}
+    
+    
+    
+    " Hit F4 when editing a Javascript file will write, run jslint and show
+    " you errors. Requires ftplugin/javascript.vim to be setup according to
+    " http://technotales.wordpress.com/2011/05/21/node-jslint-and-vim/
+
+    nnoremap <F4> :w<CR>:make<CR>:cw<CR>    
+	" highlight SpecialKey term=bold cterm=bold		" use reverse if bold isn't enough
+
