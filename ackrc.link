@@ -1,3 +1,11 @@
 --color
 --pager=less -r
 --smart-case
+--sort-files
+
+--type-add=css=.sass,.less,.scss,.styl
+--type-add=ruby=.rake,.rsel,.builder,.thor
+--type-add=html=.haml,.html.erb,.html.haml,.jade
+--type-add=js=.js.erb,.coffee
+--type-set=c=.c,.cpp,.ino,.pde,.h
+--type-set=json=.json
