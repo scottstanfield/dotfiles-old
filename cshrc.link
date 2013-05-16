@@ -43,6 +43,7 @@ alias lynx 'lynx --accept_all_cookies'
 alias , cd .. 
 alias ll 'ls -lhG' 
 alias la 'ls -AG'
+alias lt 'ls -lt'
 alias lla 'ls -lGa'
 alias pd pushd
 alias md mkdir
