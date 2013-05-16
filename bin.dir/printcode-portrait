@@ -1,0 +1,4 @@
+#!/bin/bash
+TFILE="/tmp/$RANDOM.ps"
+enscript --fancy-header --portrait --line-numbers -o $TFILE $*
+open -a preview $TFILE
