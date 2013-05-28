@@ -8,6 +8,7 @@
     "nonstandard"   : true,     // widely-adopted globals, e.g. 'escape'
 
     "predef"        : [         // extra globals
+		"exports",
         "ripcord",              // opscenter globals
         "$rcp"                  // ripcord phrases
     ],

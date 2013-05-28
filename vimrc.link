@@ -43,7 +43,8 @@
     set noerrorbells                " No beeping!
     set showcmd                     " Display incomplete commands.
     set visualbell                  " No flashing either.
-    set wildignore=*.jpg,*.gif,*.png,*.git,*.gem,*.zip,*.tar.gz
+    set wildignore+=*.jpg,*.gif,*.png,*.git,*.gem,*.zip,*.tar.gz
+	set wildignore+=node_modules
     set wildmenu                    " Enhanced command line completion.
 
     " After searching with /, hitting <leader>/ toggles highlight
@@ -51,9 +52,7 @@
 " }}
 
 " Install custom font "Monaco for Powerline" first
-" Menlo  https://gist.github.com/sjl/1627888
-" Inconsolata and Menlo:  https://gist.github.com/qrush/1595572
-" Monaco  https://gist.github.com/baopham/1838072
+" https://github.com/Lokaltog/powerline-fonts
 
 if has('gui_running')
     set guioptions=aAce
@@ -119,7 +118,7 @@ endif
     inoremap <F9> <C-O>za
     noremap <F9> za
     vnoremap <space> zf             " wrap a visual block with a fold
-    nnoremap <space> za             " toggle fold with space
+    " nnoremap <space> za             " toggle fold with space
     noremap <leader>f za
 
     nnoremap <F10> :silent call ToggleFold()<CR>
@@ -175,11 +174,15 @@ endif
     vnoremap Q gq
     nnoremap Q gqap
 
+	" Bind :Q to :q since I leave finger on shift for :
+	command! Q q
+	command! Qall qall
+
     " Sane navigation for wrapped lines
     nnoremap j gj
     nnoremap k gk
 
-    " I hit Capital K all the time
+    " Disable K from looking stuff up
     noremap K <Esc>
 
     " ideas taken from Janus
@@ -200,7 +203,7 @@ endif
 "    nmap <leader>r ggVGg?           " ROT13 is fun!
 
     " Show cursor column marker
-    nnoremap <leader>c :set cursorcolumn!<CR>
+    " nnoremap <leader>c :set cursorcolumn!<CR>
     nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
   
@@ -223,6 +226,7 @@ endif
 
     " <leader>s is easier than :w<CR>
     nnoremap <leader>w :w<CR>
+	nnoremap <C-s> :w<CR>
 
     " select all text in current buffer (like Command-A)
     noremap <leader>a ggVG
@@ -302,7 +306,10 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'groenewege/vim-less'
     Bundle 'wavded/vim-stylus'
     Bundle 'puppetlabs/puppet-syntax-vim'
-    Bundle 'tpope/vim-commentary'
+
+    Bundle 'tpope/vim-commentary'			
+	" comment out with the 'gc' command
+	
     Bundle 'mileszs/ack.vim'
 
     Bundle 'scrooloose/syntastic'
@@ -321,16 +328,19 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'mattn/zencoding-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
 
-    " Bundle 'scrooloose/nerdtree'
-    " nnoremap <leader>nt :NERDTree<cr>
+    Bundle 'scrooloose/nerdtree'
+    nnoremap <leader>nt :NERDTree<cr>
 
-    " Bundle 'jistr/vim-nerdtree-tabs'
-    " nnoremap <leader>nn :NERDTreeTabsToggle<CR>
+    Bundle 'jistr/vim-nerdtree-tabs'
+    nnoremap <leader>u <plug>NERDTreeTabsToggle<cr>
 
-    " Uncomment to use Jamis Buck's file opening plugin
-    "map <Leader>t :FuzzyFinderTextMate<Enter>
+	Bundle 'kien/ctrlp.vim'
+	Bundle 'endel/ctrlp-filetype.vim'
 
-    " Bundle: git://github.com/scrooloose/nerdcommenter.git
+	" Bundle 'SirVer/ultisnips'
+
+	Bundle 'vim-scripts/mru.vim'
+
 
     " Bundle: git://github.com/mileszs/ack.vim.git
 
@@ -371,7 +381,7 @@ augroup my_au
     filetype plugin indent on   
     au FileType, text,markdown setlocal textwidth=72 colorcolumn=80
 
-    au FileType stylus set ts=2|set shiftwidth=2|set expandtab
+    au FileType stylus set ts=4|set shiftwidth=4|set expandtab
     au FileType jade set ts=2|set shiftwidth=2|set expandtab
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
