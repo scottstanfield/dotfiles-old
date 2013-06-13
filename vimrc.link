@@ -337,16 +337,13 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'endel/ctrlp-filetype.vim'
 
-	" Bundle 'SirVer/ultisnips'
-
 	Bundle 'vim-scripts/mru.vim'
 
 
+	" Old bundles I haven't gone through yet to see if they are worthy
     " Bundle: git://github.com/mileszs/ack.vim.git
-
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
-    " Bundle: git://github.com/digitaltoad/vim-jade.git
     " Bundle: git://github.com/tpope/vim-unimpared.git
 " }}
 
