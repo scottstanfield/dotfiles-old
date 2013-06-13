@@ -2,7 +2,8 @@
 # Can also achive by reordering /etc/paths
 #
 
-setenv PATH "/usr/local/bin:/usr/local/share/npm/bin:/usr/local/opt/coreutils/bin:${PATH}:$HOME/bin:."
+setenv PATH "/usr/local/bin:/usr/local/share/npm/bin:/usr/local/opt/coreutils/bin:/usr/local/var/rbenv/shims:${PATH}:$HOME/bin:."
+rbenv rehash
 
 eval `gdircolors -c ~/projects/repos/dircolors-solarized/dircolors.ansi-universal`
 setenv LS_OPTIONS "--color=auto --group-directories-first -F"
@@ -26,7 +27,7 @@ set autolist
 setenv PAGER less
 setenv LESS XFR
 setenv EDITOR vi
-setenv CC /usr/bin/gcc
+setenv CC /usr/bin/gcc-4.2
 
 # ALIASES
 #
