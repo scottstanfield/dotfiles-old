@@ -9,8 +9,10 @@
 
     "predef"        : [         // extra globals
 		"exports",
+		"$",					// for jQuery
         "ripcord",              // opscenter globals
-        "$rcp"                  // ripcord phrases
+        "$rcp",                 // ripcord phrases
+		"process"				// global in express
     ],
 
     // Development
@@ -28,6 +30,7 @@
     "trailing"      : true,     // no trailing whitespace is allowed
     "undef"         : true,     // prevent the use of undeclared variables
 	"unused"		: true,
+	"eqeqeq"		: true,		// == should be triple ===
 
     // Relaxing
     "sub"           : true      // allow all subscript notation, including '[]'
