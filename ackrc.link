@@ -2,6 +2,7 @@
 --pager=less -r
 --smart-case
 --sort-files
+--ignore-dir=node_modules
 
 --type-add=css=.sass,.less,.scss,.styl
 --type-add=ruby=.rake,.rsel,.builder,.thor
