@@ -7,7 +7,7 @@ Step 1: Clone and link .cshrc and .vimrc
 ----------------------------------------
 
   ```sh
-  % git clone git://github.com/rm8t/dotfiles ~/.dotfiles
+  % git clone git://github.com/scottstanfield/dotfiles ~/.dotfiles
   % cd .dotfiles
   % rake install
   ```
