@@ -3,11 +3,15 @@
 #
 
 setenv PATH "/usr/local/bin:/usr/local/share/npm/bin:/usr/local/opt/coreutils/bin:/usr/local/var/rbenv/shims:${PATH}:$HOME/bin:."
-rbenv rehash
 
 eval `gdircolors -c ~/projects/repos/dircolors-solarized/dircolors.ansi-universal`
 setenv LS_OPTIONS "--color=auto --group-directories-first -F"
-alias ls 'gls $LS_OPTIONS'
+
+if (-e `which gls`) then
+	alias ls 'gls $LS_OPTIONS'
+else
+	alias ls 'ls -Gp'
+endif
 
 setenv GNUTERMAPP /Applications/AquaTerm.app
 setenv GNUTERM aqua
