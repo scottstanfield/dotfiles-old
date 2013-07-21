@@ -22,7 +22,7 @@
     "es5"           : true,     // allow ES5 syntax
 
     // Enforcing
-	"quotmark"		: true,		// enable consistency among 'single' and "double" quotemarks
+	"quotmark"		: false,		// enable consistency among 'single' and "double" quotemarks
     "bitwise"       : true,     // prohibit the use of bitwise operations (slow and '&' is usually supposed to be '&&')
     "curly"         : true,     // require {} for all blocks/scopes
     "latedef"       : true,     // prohibit variable use before definition ("hoisting")
