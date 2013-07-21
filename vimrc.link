@@ -203,7 +203,7 @@ endif
 "    nmap <leader>r ggVGg?           " ROT13 is fun!
 
     " Show cursor column marker
-    " nnoremap <leader>c :set cursorcolumn!<CR>
+    nnoremap <leader>c :set cursorcolumn!<CR>
     nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
   
@@ -250,7 +250,8 @@ endif
     inoremap <S-Tab> <C-P>
 
     " Execute buffer in Python 
-    nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    " nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    nnoremap <leader>p :w<CR>:!/usr/bin/env node % <CR>
 " }}
 
 " Skeleton files with todo templates {{
@@ -320,7 +321,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " nnoremap <leader>js :w<CR>:make<CR>:cw<CR>
   
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-    let g:Powerline_symtoles = 'fancy'
+    let g:Powerline_symbols = 'fancy'
 
   " shows git diff marks in the gutter
     " Bundle 'airblade/vim-gitgutter'
