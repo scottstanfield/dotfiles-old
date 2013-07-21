@@ -55,6 +55,7 @@ alias md mkdir
 alias h history
 
 alias vimrc 'vi ~/.vimrc'
+alias cshrc 'vi ~/.cshrc'
 
 # `brew install tree` instead
 # alias tree "find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
