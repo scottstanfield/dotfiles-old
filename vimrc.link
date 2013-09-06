@@ -209,6 +209,11 @@ endif
   
     " From http://vimcasts.org/episodes/show-invisibles/
     ab heart ❤
+    ab [cmd] ⌘
+	ab [shift] ⇧
+	ab [option] ⌥
+	ab [ctrl] ⌃
+	ab [tab] ⇥
 
     " Toggle invisible whiteSpace ¬ ¶
     nnoremap <leader>i :set list!<CR>
@@ -273,7 +278,7 @@ nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr>
 " Automatically insert line breaks in text files
 " au BufEnter *.txt setl tx fo+=n2a linebreak
 
-au BufNewFile,BufRead *.jade set filetype=jade 
+" au BufNewFile,BufRead *.jade set filetype=jade 
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
@@ -380,7 +385,7 @@ augroup my_au
     au FileType, text,markdown setlocal textwidth=72 colorcolumn=80
 
     au FileType stylus set ts=4|set shiftwidth=4|set expandtab
-    au FileType jade set ts=2|set shiftwidth=2|set expandtab
+    au FileType jade set ts=4|set shiftwidth=4|set noexpandtab
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
 
