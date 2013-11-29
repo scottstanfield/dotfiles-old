@@ -44,7 +44,7 @@
     set showcmd                     " Display incomplete commands.
     set visualbell                  " No flashing either.
     set wildignore+=*.jpg,*.gif,*.png,*.git,*.gem,*.zip,*.tar.gz
-	set wildignore+=node_modules
+    set wildignore+=node_modules
     set wildmenu                    " Enhanced command line completion.
 
     " After searching with /, hitting <leader>/ toggles highlight
@@ -100,6 +100,7 @@ endif
     " Necessary for previous 4 lines http://goo.gl/bxpIO
     " au BufNewFile,BufRead * setlocal formatoptions=cqnt
 
+    " Change tabs to spaces, or the other way around. Good for Python!
     nmap <leader>1 :set et<cr>:retab<cr>
     nmap <leader>2 :set noet<cr>:retab!<cr>
 
@@ -125,6 +126,8 @@ endif
     nnoremap <leader>fc zM          " close all folds
     nnoremap <leader>fo zR          " open all folds
 
+    " gf is built in and will "Goto File"
+    " gb is the opposite, will "Go Back"
     nnoremap gb <C-o>
 
     " From https://github.com/vim-scripts/Efficient-python-folding
@@ -174,9 +177,9 @@ endif
     vnoremap Q gq
     nnoremap Q gqap
 
-	" Bind :Q to :q since I leave finger on shift for :
-	command! Q q
-	command! Qall qall
+    " Bind :Q to :q since I leave finger on shift for :
+    command! Q q
+    command! Qall qall
 
     " Sane navigation for wrapped lines
     nnoremap j gj
@@ -208,12 +211,20 @@ endif
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
   
     " From http://vimcasts.org/episodes/show-invisibles/
-    ab heart ❤
+    ab [heart] ❤
     ab [cmd] ⌘
-	ab [shift] ⇧
-	ab [option] ⌥
-	ab [ctrl] ⌃
-	ab [tab] ⇥
+    ab [shift] ⇧
+    ab [option] ⌥
+    ab [ctrl] ⌃
+    ab [tab] ⇥
+    ab [section] §
+    ab [lozenge] ◊
+    ab [interpunct] ·
+    ab [reference] ※
+    ab [emspace]  
+    ab [enspace]  
+    ab [ellipse] …     
+    ab [bar] ―
 
     " Toggle invisible whiteSpace ¬ ¶
     nnoremap <leader>i :set list!<CR>
@@ -223,7 +234,7 @@ endif
     set listchars+=nbsp:_
     set listchars+=extends:»
     set listchars+=precedes:«
-	set listchars+=trail:▫
+    set listchars+=trail:▫
     " set listchars=eol:¬,tab:⧂⇥⇥»,trail:▫,nbsp:_
     
     " Runs the current line in the shell. Very dangerous.
@@ -231,7 +242,7 @@ endif
 
     " <leader>s is easier than :w<CR>
     nnoremap <leader>w :w<CR>
-	nnoremap <C-s> :w<CR>
+    nnoremap <C-s> :w<CR>
 
     " select all text in current buffer (like Command-A)
     noremap <leader>a ggVG
@@ -255,8 +266,8 @@ endif
     inoremap <S-Tab> <C-P>
 
     " Execute buffer in Python 
-    " nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
-    nnoremap <leader>p :w<CR>:!/usr/bin/env node % <CR>
+    nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    " nnoremap <leader>p :w<CR>:!/usr/bin/env node % <CR>
 " }}
 
 " Skeleton files with todo templates {{
@@ -313,9 +324,9 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'wavded/vim-stylus'
     Bundle 'puppetlabs/puppet-syntax-vim'
 
-    Bundle 'tpope/vim-commentary'			
-	" comment out with the 'gc' command
-	
+    Bundle 'tpope/vim-commentary'           
+    " comment out with the 'gc' command
+    
     Bundle 'mileszs/ack.vim'
 
     Bundle 'scrooloose/syntastic'
@@ -340,17 +351,21 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'jistr/vim-nerdtree-tabs'
     nnoremap <leader>u <plug>NERDTreeTabsToggle<cr>
 
-	Bundle 'kien/ctrlp.vim'
-	Bundle 'endel/ctrlp-filetype.vim'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'endel/ctrlp-filetype.vim'
 
-	Bundle 'vim-scripts/mru.vim'
+    Bundle 'vim-scripts/mru.vim'
 
 
-	" Old bundles I haven't gone through yet to see if they are worthy
+    " Old bundles I haven't gone through yet to see if they are worthy
     " Bundle: git://github.com/mileszs/ack.vim.git
     " Bundle: git://github.com/tpope/vim-fugitive.git
     " Bundle: git://github.com/tpope/vim-speeddating.git
     " Bundle: git://github.com/tpope/vim-unimpared.git
+    "
+    Bundle 'kien/ctrlp.vim'
+    let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|venv'
+
 " }}
 
 " Colors (solarized) {{
@@ -389,12 +404,22 @@ augroup my_au
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
 
+    au BufEnter *.tsv set tabstop=12 softtabstop=12 shiftwidth=12 noexpandtab
+
     " % npm install node-jslint -g
 "   augroup FileType javascript
 "       set makeprg=jshint\ %
 "       set errorformat=%ELine %l:%c,%Z\\s%#Reason: %m,%C%.%#,%f: line %l\, col %c\, %m,%-G%.%#
 "   augroup end
-    
+"
+    " Jump to the last position of the cursor except for git commits
+    function! PositionCursorFromViminfo()
+        if !(bufname("%") =~ '\(COMMIT_EDITMSG\)') && line("'\"") > 1 && line("'\"") <= line("$")
+            exe "normal! g`\""
+        endif
+    endfunction
+
+    au BufReadPost * call PositionCursorFromViminfo()
 
     " Jump to the last position of the cursor
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
@@ -411,5 +436,5 @@ augroup END
     " http://technotales.wordpress.com/2011/05/21/node-jslint-and-vim/
 
     nnoremap <F4> :w<CR>:make<CR>:cw<CR>    
-	" highlight SpecialKey term=bold cterm=bold		" use reverse if bold isn't enough
+    " highlight SpecialKey term=bold cterm=bold     " use reverse if bold isn't enough
 
