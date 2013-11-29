@@ -1,3 +1,4 @@
 #!/bin/sh
-PERCENT=`curl -s http://174.33.94.117/stlui/user/allowance_request.html | sed -n 's/.*Allowance Remaining\(.\{41\}\).*/\1/p' | tail -c 3` 
-echo $PERCENT"%"
+# old way before site changed: PERCENT=`curl -s http://174.33.94.117/stlui/user/allowance_request.html | sed -n 's/.*Allowance Remaining\(.\{41\}\).*/\1/p' | tail -c 3` 
+
+curl -s http://174.33.94.117/stlui/user/allowance_request.html | grep '%' | sed -e 's/<[^>]*>//g'
