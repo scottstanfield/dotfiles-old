@@ -422,6 +422,9 @@ defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
 # Add Notification Center to Menubar 
 # launchctl submit -l com.apple.notificationcenterui.agent -p /System/Library/CoreServices/NotificationCenter.app/Contents/MacOS/NotificationCenter
 
+# Add Command-F to search in iTunes
+defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+
 
 ###############################################################################
 # Sublime Text 2                                                              #
@@ -440,3 +443,4 @@ for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer Twit
 	killall "$app" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+

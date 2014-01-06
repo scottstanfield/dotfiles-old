@@ -51,8 +51,6 @@
     nnoremap <silent> <leader>/ :set hlsearch! hlsearch?<CR>
 " }}
 
-" Install custom font "Monaco for Powerline" first
-" https://github.com/Lokaltog/powerline-fonts
 
 if has('gui_running')
     set guioptions=aAce
@@ -62,7 +60,7 @@ endif
 
 " UI {{
     let loaded_matchparen = 1       " Just use % instead of auto paren matching
-    " set colorcolumn=80            " vertical line at 80 cols
+    set colorcolumn=80            " vertical line at 80 cols
     set nostartofline               " Searches leave cursor on same column
     set ignorecase                  " Case-insensitive searching.
     set incsearch                   " Highlight matches as you type.
@@ -79,6 +77,10 @@ endif
 
     set title                       " Set the terminal's title
     let &titleold=getcwd()          " Show CWD instead of "Thx for Flying VIM"
+
+	" Open new split panes to the right and bottom, which feels more natural
+	set splitbelow
+	set splitright
 " }}
 
 
@@ -142,7 +144,7 @@ endif
         endif
     endfunction
 
-    function! SimpleFoldText() 
+    function! SimpleFoldText()
         return getline(v:foldstart).' '
     endfunction " }
     set foldtext=SimpleFoldText()
@@ -209,7 +211,7 @@ endif
     nnoremap <leader>c :set cursorcolumn!<CR>
     nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
-  
+
     " From http://vimcasts.org/episodes/show-invisibles/
     ab [heart] ❤
     ab [cmd] ⌘
@@ -221,10 +223,11 @@ endif
     ab [lozenge] ◊
     ab [interpunct] ·
     ab [reference] ※
-    ab [emspace]  
-    ab [enspace]  
+    ab [em]  
+    ab [en]  
     ab [ellipse] …     
     ab [bar] ―
+	ab [la] ←
 
     " Toggle invisible whiteSpace ¬ ¶
     nnoremap <leader>i :set list!<CR>
@@ -236,9 +239,9 @@ endif
     set listchars+=precedes:«
     set listchars+=trail:▫
     " set listchars=eol:¬,tab:⧂⇥⇥»,trail:▫,nbsp:_
-    
+
     " Runs the current line in the shell. Very dangerous.
-    nnoremap <leader>; :.w !sh<CR>   
+    " nnoremap <leader>; :.w !sh<CR>
 
     " <leader>s is easier than :w<CR>
     nnoremap <leader>w :w<CR>
@@ -251,6 +254,9 @@ endif
     nnoremap <C-k> <C-u>
 
     nnoremap <leader>b <C-w>l
+
+	" Flip between last two files
+	nnoremap <leader><leader> <c-^>
 
     " Indent and outdent now > and < keep the visual selection
     vnoremap > >gv
@@ -265,7 +271,7 @@ endif
     " imap <Tab> <C-N>
     inoremap <S-Tab> <C-P>
 
-    " Execute buffer in Python 
+    " Execute buffer in Python
     nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
     " nnoremap <leader>p :w<CR>:!/usr/bin/env node % <CR>
 " }}
@@ -274,22 +280,22 @@ endif
 "use .vim/skel/template.html template for editing new files that match *.html
 " au! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
 
-au! BufNewFile * call LoadTemplate() 
-function! LoadTemplate() 
-        silent! 0r ~/.vim/skel/template.%:e 
-        " Highlight %VAR% placeholders with the Todo colour group 
+au! BufNewFile * call LoadTemplate()
+function! LoadTemplate()
+        silent! 0r ~/.vim/skel/template.%:e
+        " Highlight %VAR% placeholders with the Todo colour group
         syn match Todo "%\u\+%" containedIn=ALL
-endfunction 
-" Jump between %VAR% placeholders in Insert mode with <Ctrl-p> 
+endfunction
+" Jump between %VAR% placeholders in Insert mode with <Ctrl-p>
 inoremap <c-p> <ESC>/%\u.\{-1,}%<cr>c/%/
-nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr> 
+nnoremap <c-p> /%\u.\{-1,}%<cr>c/%/e<cr>
 " }}
 
 " Filetypes {{
 " Automatically insert line breaks in text files
 " au BufEnter *.txt setl tx fo+=n2a linebreak
 
-" au BufNewFile,BufRead *.jade set filetype=jade 
+" au BufNewFile,BufRead *.jade set filetype=jade
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 " }}
 
@@ -324,9 +330,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'wavded/vim-stylus'
     Bundle 'puppetlabs/puppet-syntax-vim'
 
-    Bundle 'tpope/vim-commentary'           
+    Bundle 'tpope/vim-commentary'
     " comment out with the 'gc' command
-    
     Bundle 'mileszs/ack.vim'
 
     Bundle 'scrooloose/syntastic'
@@ -335,9 +340,17 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     let g:syntastic_warning_symbol='⚠'
     " let g:syntastic_auto_jump=1
     " nnoremap <leader>js :w<CR>:make<CR>:cw<CR>
-  
-    Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-    let g:Powerline_symbols = 'fancy'
+
+    " Install custom font "Monaco for Powerline" first
+    " https://github.com/Lokaltog/powerline-fonts
+    " Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+    " let g:Powerline_symbols = 'fancy'
+
+    Bundle 'bling/vim-airline'
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme = 'bubblegum'
+
+    " Bundle 'chrisbra/csv.vim'
 
   " shows git diff marks in the gutter
     " Bundle 'airblade/vim-gitgutter'
@@ -356,30 +369,33 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
     Bundle 'vim-scripts/mru.vim'
 
-
-    " Old bundles I haven't gone through yet to see if they are worthy
-    " Bundle: git://github.com/mileszs/ack.vim.git
-    " Bundle: git://github.com/tpope/vim-fugitive.git
-    " Bundle: git://github.com/tpope/vim-speeddating.git
-    " Bundle: git://github.com/tpope/vim-unimpared.git
-    "
-    Bundle 'kien/ctrlp.vim'
-    let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|venv'
+	Bundle 'nathanaelkane/vim-indent-guides'
+    nmap <silent> <leader>g <Plug>IndentGuidesToggle
 
 " }}
 
+" Use the Silver Searcher https://github.com/ggreer/the_silver_server 
+" requires: brew install ag
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 " Colors (solarized) {{
-    let g:solarized_contrast="high"    
+    let g:solarized_contrast="high"
     let g:solarized_visibility="high"
     call togglebg#map("<leader>x")          " ,x toggles dark/light
 
     let profile = $ITERM_PROFILE
     if profile ==? 'solarized-dark'
         set background=dark                 " light | dark
-        hi colorcolumn ctermbg=darkgrey 
+        hi colorcolumn ctermbg=darkgrey
     else
         set background=light
-        hi colorcolumn ctermbg=lightgrey 
+        hi colorcolumn ctermbg=lightgrey
     endif
     colorscheme solarized
     "  Remove next line comment to force dark color scheme.
@@ -396,15 +412,14 @@ augroup my_au
 
     " place this after Bundles have loaded
     " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
-    filetype plugin indent on   
+    filetype plugin indent on
     au FileType, text,markdown setlocal textwidth=72 colorcolumn=80
-
     au FileType stylus set ts=4|set shiftwidth=4|set expandtab
     au FileType jade set ts=4|set shiftwidth=4|set noexpandtab
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
 
-    au BufEnter *.tsv set tabstop=12 softtabstop=12 shiftwidth=12 noexpandtab
+    au BufEnter *.tsv set tabstop=14 softtabstop=14 shiftwidth=14 noexpandtab
 
     " % npm install node-jslint -g
 "   augroup FileType javascript
@@ -418,23 +433,32 @@ augroup my_au
             exe "normal! g`\""
         endif
     endfunction
-
     au BufReadPost * call PositionCursorFromViminfo()
 
     " Jump to the last position of the cursor
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
     " Turn off line wrapping when working on HTML files
     au BufNewFile,BufRead *.html setlocal nowrap
 augroup END
-
 "}}
-    
-    
-    
-    " Hit F4 when editing a Javascript file will write, run jslint and show
-    " you errors. Requires ftplugin/javascript.vim to be setup according to
-    " http://technotales.wordpress.com/2011/05/21/node-jslint-and-vim/
 
-    nnoremap <F4> :w<CR>:make<CR>:cw<CR>    
-    " highlight SpecialKey term=bold cterm=bold     " use reverse if bold isn't enough
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+autocmd BufWritePre *.py :call TrimWhiteSpace()
+
+" Hit F4 when editing a Javascript file will write, run jslint and show
+" you errors. Requires ftplugin/javascript.vim to be setup according to
+" http://technotales.wordpress.com/2011/05/21/node-jslint-and-vim/
+
+nnoremap <F4> :w<CR>:make<CR>:cw<CR>
+" highlight SpecialKey term=bold cterm=bold     " use reverse if bold isn't enough
 

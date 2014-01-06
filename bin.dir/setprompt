@@ -52,7 +52,7 @@ setenv GIT_PROMPT  "git status |& git-prompt.awk"
 # set p1="%B%h%b %m:%B$color_path%~$color_normal%b " 
 
 # show only 3 trailing folders http://www.nparikh.org/unix/prompt.php#tcsh
-set p1="%B%h%b %m:%B$color_path%c3$color_normal%b " 
+set p1="%B%h%b %m:%B$color_path%c2$color_normal%b " 
 
 # history time computer path
 # set p1="%h %t %B%m%b:%B$color_path%~$color_normal%b " 

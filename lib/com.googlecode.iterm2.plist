@@ -452,7 +452,7 @@
 		</dict>
 	</dict>
 	<key>Default Bookmark Guid</key>
-	<string>FEE51CCA-E9F9-4AA8-B845-9D1B87951F35</string>
+	<string>DA2A4300-F994-4850-9B15-1BCFA081EAE2</string>
 	<key>DimBackgroundWindows</key>
 	<true/>
 	<key>DimInactiveSplitPanes</key>
@@ -574,6 +574,8 @@
 	<false/>
 	<key>HideActivityIndicator</key>
 	<false/>
+	<key>HideMenuBarInFullscreen</key>
+	<true/>
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
@@ -604,8 +606,16 @@
 	<true/>
 	<key>MaxVertically</key>
 	<true/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 8</string>
+	<key>NSFontPanelPreviewHeight</key>
+	<real>40</real>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
+	<string>~/Desktop</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{712, 448}</string>
+	<key>NSNavPanelExpandedStateForSaveMode</key>
+	<false/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -613,11 +623,13 @@
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>380 81 445 270 0 0 2560 1418 </string>
+	<string>924 137 730 293 0 0 2560 1418 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>408 869 924 485 0 0 2560 1418 </string>
+	<string>242 304 924 485 0 0 1440 878 </string>
+	<key>NSWindow Frame com.apple.typography_panel_InconsolataForPowerline</key>
+	<string>398 632 260 42 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>937 30 825 691 0 0 2560 1418 </string>
+	<string>722 0 718 878 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_FEE51CCA-E9F9-4AA8-B845-9D1B87951F35</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1169,11 +1181,11 @@
 			<key>Name</key>
 			<string>solarized-light</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>DejaVuSansMonoForPowerline 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 14</string>
+			<string>DejaVuSansMonoForPowerline 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1222,7 +1234,7 @@
 			<key>Set Local Environment Vars</key>
 			<true/>
 			<key>Shortcut</key>
-			<string></string>
+			<string>L</string>
 			<key>Silence Bell</key>
 			<false/>
 			<key>Smart Cursor Color</key>
@@ -1350,6 +1362,8 @@
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>Allow Title Reporting</key>
+			<false/>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -1509,6 +1523,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Background Image Is Tiled</key>
+			<false/>
 			<key>Background Image Location</key>
 			<string></string>
 			<key>Blend</key>
@@ -1890,11 +1906,11 @@
 			<key>Name</key>
 			<string>solarized-dark</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>DejaVuSansMonoForPowerline 14</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 18</string>
+			<string>DejaVuSansMonoForPowerline 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1943,7 +1959,7 @@
 			<key>Set Local Environment Vars</key>
 			<true/>
 			<key>Shortcut</key>
-			<string></string>
+			<string>K</string>
 			<key>Silence Bell</key>
 			<false/>
 			<key>Smart Cursor Color</key>
@@ -2055,6 +2071,10 @@
 			<true/>
 			<key>Use Bright Bold</key>
 			<true/>
+			<key>Use Canonical Parser</key>
+			<false/>
+			<key>Use Italic Font</key>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -2131,7 +2151,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-06-22T05:19:06Z</date>
+	<date>2013-11-30T18:33:03Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2174,7 +2194,11 @@
 	<integer>0</integer>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findIgnoreCase_iTerm</key>
+	<true/>
+	<key>findRegex_iTerm</key>
+	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20130613</string>
+	<string>1.0.0.20131124</string>
 </dict>
 </plist>

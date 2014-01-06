@@ -1,0 +1,4 @@
+#!/bin/bash
+TFILE="/tmp/$RANDOM.ps"
+enscript --font=Courier9 -o $TFILE $*
+open -a preview $TFILE

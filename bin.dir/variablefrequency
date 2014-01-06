@@ -1,0 +1,3 @@
+#!/bin/bash
+tr -c '[:alnum:]' '[\n*]' < $1 | egrep '^[[:alpha:]]' | sort | uniq -c | sort -nr | head -12 | nl
+
