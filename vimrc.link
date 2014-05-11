@@ -78,9 +78,9 @@ endif
     set title                       " Set the terminal's title
     let &titleold=getcwd()          " Show CWD instead of "Thx for Flying VIM"
 
-	" Open new split panes to the right and bottom, which feels more natural
-	set splitbelow
-	set splitright
+    " Open new split panes to the right and bottom, which feels more natural
+    set splitbelow
+    set splitright
 " }}
 
 
@@ -203,9 +203,9 @@ endif
     " Open current Markdown (*.md) file in OS X "Marked" and force redraw
     nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
 
-    nnoremap <leader>r gq}               " *r*eformat current paragraph
+"    nnoremap <leader>r gq}               " *r*eformat current paragraph
 
-"    nmap <leader>r ggVGg?           " ROT13 is fun!
+    nmap <leader>r ggVGg?           " ROT13 is fun!
 
     " Show cursor column marker
     nnoremap <leader>c :set cursorcolumn!<CR>
@@ -227,7 +227,8 @@ endif
     ab [en]  
     ab [ellipse] …     
     ab [bar] ―
-	ab [la] ←
+    ab [la] ←
+
 
     " Toggle invisible whiteSpace ¬ ¶
     nnoremap <leader>i :set list!<CR>
@@ -255,14 +256,17 @@ endif
 
     nnoremap <leader>b <C-w>l
 
-	" Flip between last two files
-	nnoremap <leader><leader> <c-^>
+    " Flip between last two files
+    nnoremap <leader><leader> <c-^>
 
     " Indent and outdent now > and < keep the visual selection
     vnoremap > >gv
     vnoremap < <gv
     vnoremap <Tab> >gv
     vnoremap <S-Tab> <gv
+
+	" Make Control-T uppercase the current word 
+	inoremap <C-t> <ESC>bgUWea
 
     " Add the . command to visual mode
     vnoremap . :norm.<CR>
@@ -369,12 +373,12 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
     Bundle 'vim-scripts/mru.vim'
 
-	Bundle 'nathanaelkane/vim-indent-guides'
+    Bundle 'nathanaelkane/vim-indent-guides'
     nmap <silent> <leader>g <Plug>IndentGuidesToggle
 
 " }}
 
-" Use the Silver Searcher https://github.com/ggreer/the_silver_server 
+" Use the Silver Searcher https://github.com/ggreer/the_silver_server
 " requires: brew install ag
 if executable('ag')
   " Use Ag over Grep
@@ -442,18 +446,20 @@ augroup my_au
 augroup END
 "}}
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
 
 
 function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
 autocmd BufWritePre *.py :call TrimWhiteSpace()
+
+nnoremap <leader>$ :silent call TrimWhiteSpace()<CR>
 
 " Hit F4 when editing a Javascript file will write, run jslint and show
 " you errors. Requires ftplugin/javascript.vim to be setup according to
