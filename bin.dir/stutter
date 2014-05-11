@@ -1,4 +1,0 @@
-#!/bin/bash
-while [ true ]; do
-	./pause && sleep 0.2 && ./play && sleep 2
-done
