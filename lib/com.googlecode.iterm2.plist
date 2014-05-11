@@ -452,7 +452,7 @@
 		</dict>
 	</dict>
 	<key>Default Bookmark Guid</key>
-	<string>DA2A4300-F994-4850-9B15-1BCFA081EAE2</string>
+	<string>FEE51CCA-E9F9-4AA8-B845-9D1B87951F35</string>
 	<key>DimBackgroundWindows</key>
 	<true/>
 	<key>DimInactiveSplitPanes</key>
@@ -611,7 +611,7 @@
 	<key>NSFontPanelPreviewHeight</key>
 	<real>40</real>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Desktop</string>
+	<string>~/projects/repos/solarized/iterm2-colors-solarized</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
 	<key>NSNavPanelExpandedStateForSaveMode</key>
@@ -623,13 +623,13 @@
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>924 137 730 293 0 0 2560 1418 </string>
+	<string>358 68 730 293 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>242 304 924 485 0 0 1440 878 </string>
+	<string>216 297 924 485 0 0 1440 878 </string>
 	<key>NSWindow Frame com.apple.typography_panel_InconsolataForPowerline</key>
 	<string>398 632 260 42 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>722 0 718 878 0 0 1440 878 </string>
+	<string>105 130 1345 726 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_FEE51CCA-E9F9-4AA8-B845-9D1B87951F35</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -2151,7 +2151,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-11-30T18:33:03Z</date>
+	<date>2014-01-07T18:01:05Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2199,6 +2199,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20131124</string>
+	<string>1.0.0.20131228</string>
 </dict>
 </plist>
