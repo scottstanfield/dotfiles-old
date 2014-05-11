@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-# lyrics.sh
-#
-# A fine piece of work by @febuiles
-#   https://gist.github.com/1549979
-
-artist=`osascript -e'tell application "iTunes"' -e'play' -e'end tell'`
-
