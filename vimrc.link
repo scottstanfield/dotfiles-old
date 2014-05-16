@@ -389,7 +389,7 @@ if executable('ag')
 endif
 
 " Colors (solarized) {{
-    let g:solarized_contrast="high"
+    let g:solarized_contrast="high"     
     let g:solarized_visibility="high"
     call togglebg#map("<leader>x")          " ,x toggles dark/light
 
@@ -467,4 +467,29 @@ nnoremap <leader>$ :silent call TrimWhiteSpace()<CR>
 
 nnoremap <F4> :w<CR>:make<CR>:cw<CR>
 " highlight SpecialKey term=bold cterm=bold     " use reverse if bold isn't enough
+
+" Go into WordProcessorMode when typing Markdown paragraphs: <leader>0
+" http://www.drbunsen.org/writing-in-vim/
+func! WordProcessorMode()
+	setlocal formatoptions=1t
+	setlocal noexpandtab
+	map j gj
+	map k gk
+	setlocal spell spelllang=en_us
+	set complete+=s
+	set formatprg=par
+	setlocal wrap
+	setlocal linebreak
+endfu
+nnoremap <leader>0 :silent call WordProcessorMode()
+
+if has('persistent_undo')
+	set undofile "Enable persistent undo
+
+	" Set persistent undo directory
+	set undodir=~/.vim/undo
+	if !isdirectory(expand(&undodir))
+		call mkdir(expand(&undodir), 'p')
+	endif
+endif
 
