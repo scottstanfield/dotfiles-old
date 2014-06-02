@@ -122,11 +122,11 @@ endif
     noremap <F9> za
     vnoremap <space> zf             " wrap a visual block with a fold
     " nnoremap <space> za             " toggle fold with space
-    noremap <leader>f za
+    " noremap <leader>f za
 
     nnoremap <F10> :silent call ToggleFold()<CR>
-    nnoremap <leader>fc zM          " close all folds
-    nnoremap <leader>fo zR          " open all folds
+    "nnoremap <leader>fc zM          " close all folds
+    "nnoremap <leader>fo zR          " open all folds
 
     " gf is built in and will "Goto File"
     " gb is the opposite, will "Go Back"
