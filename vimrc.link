@@ -107,6 +107,8 @@ endif
     nmap <leader>2 :set noet<cr>:retab!<cr>
 
     set pastetoggle=<F2>            " --INSERT (paste)-- means safe for formatted text
+
+	" nnoremap <leader>o :set paste<CR>:put *<CR>:set nopaste<CR>
 " }}
 
 " Folding {{
