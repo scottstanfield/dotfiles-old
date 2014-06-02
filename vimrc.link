@@ -222,7 +222,7 @@ endif
     nnoremap <leader>l :set cursorline!<CR>
     hi CursorLine ctermbg=yellow ctermfg=white cterm=none
 
-    " From http://vimcasts.org/episodes/show-invisibles/
+    " Abbreviations From http://vimcasts.org/episodes/show-invisibles/
     ab [heart] ❤
     ab [cmd] ⌘
     ab [shift] ⇧
@@ -237,7 +237,8 @@ endif
     ab [en]  
     ab [ellipse] …     
     ab [bar] ―
-    ab [la] ←
+	ab [la] ←
+	ab [ra] →
 
 
     " Toggle invisible whiteSpace ¬ ¶
