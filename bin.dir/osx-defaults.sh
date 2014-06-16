@@ -5,8 +5,15 @@
 # ask for admin password upfront
 sudo -v
 
+# backup defaults database to /tmp
+defaults read > /tmp/$USER.defaults
+
 # General UX
 # ----------
+
+# ⌥⌘, brings up System Preferences dialog (opt+cmd+comma)
+defaults write "Apple Global Domain" NSUserKeyEquivalents -dict-add "System Preferences\\U2026" "@~,"
+defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add NSGlobalDomain
 
 # Menu bar: disable transparency
 # defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
