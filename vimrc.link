@@ -227,6 +227,7 @@ endif
     ab [cmd] ⌘
     ab [shift] ⇧
     ab [option] ⌥
+    ab [opt] ⌥
     ab [ctrl] ⌃
     ab [tab] ⇥
     ab [section] §
@@ -239,6 +240,7 @@ endif
     ab [bar] ―
 	ab [la] ←
 	ab [ra] →
+	ab [pi] π
 
 
     " Toggle invisible whiteSpace ¬ ¶
