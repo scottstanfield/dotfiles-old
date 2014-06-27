@@ -506,13 +506,10 @@ if has('persistent_undo')
 	endif
 endif
 
-" a function to execute formd and return the cursor back
-" to it's original position within the buffer.
- 
+" Run "formd" command on buffer to fix Markdown hyperlinks
 " This script assumes formd is in your path at:
 " ~/bin/formd/formd
 " http://drbunsen.github.com/formd/
- 
  
 function! Formd(option)
     :let save_view = winsaveview()
@@ -527,11 +524,11 @@ function! Formd(option)
     :call winrestview(save_view)
 endfunction
  
-" formd mappings
- 
 nmap <leader>fr :call Formd("-r")<CR>
 nmap <leader>fi :call Formd("-i")<CR>
 nmap <leader>f :call Formd("-f")<CR>
+
+" Set cursor to underscore in insertmode 
 
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=2\x7" " 1 = vertical bar; 2 = underscore
