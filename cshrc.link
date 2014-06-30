@@ -4,7 +4,7 @@
 
 setenv PATH "/usr/local/bin:/usr/local/share/npm/bin:${HOME}/.cabal/bin:/usr/local/opt/coreutils/bin:/usr/local/var/rbenv/shims:${PATH}:$HOME/bin:."
 
-eval `gdircolors -c ~/projects/repos/dircolors-solarized/dircolors.ansi-universal`
+eval `gdircolors -c ~/lib/dircolors-solarized/dircolors.ansi-universal`
 setenv LS_OPTIONS "--color=auto --group-directories-first -F"
 
 if (-e `which gls`) then
@@ -20,8 +20,6 @@ setenv RBENV_ROOT /usr/local/var/rbenv
 setenv LLVM_CONFIG_PATH `which llvm-config`
 
 setenv COMPILER gcc
-
-set cdpath = (/Users/scott/projects/ /Users/scott/projects/msrd.io/public)
 
 set history=1000
 set savehist=1000 merge
