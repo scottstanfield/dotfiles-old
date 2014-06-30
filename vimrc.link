@@ -372,7 +372,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
   " shows git diff marks in the gutter
     " Bundle 'airblade/vim-gitgutter'
 
-    Bundle 'mattn/zencoding-vim'
+    Bundle 'mattn/emmet-vim'
     let g:user_zen_expandabbr_key = '<c-e>'
 
     Bundle 'scrooloose/nerdtree'
