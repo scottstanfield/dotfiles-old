@@ -373,7 +373,7 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " Bundle 'airblade/vim-gitgutter'
 
     Bundle 'mattn/emmet-vim'
-    let g:user_zen_expandabbr_key = '<c-e>'
+    let g:user_emmet_leader_key = '<c-e>'
 
     Bundle 'scrooloose/nerdtree'
     nnoremap <leader>nt :NERDTree<cr>
