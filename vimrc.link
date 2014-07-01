@@ -108,7 +108,7 @@ endif
 
     set pastetoggle=<F2>            " --INSERT (paste)-- means safe for formatted text
 
-	" nnoremap <leader>o :set paste<CR>:put *<CR>:set nopaste<CR>
+    " nnoremap <leader>o :set paste<CR>:put *<CR>:set nopaste<CR>
 " }}
 
 " Folding {{
@@ -154,7 +154,7 @@ endif
 
 " Buffer Management {{
 
-	" I never really used buffers so I removed these commands
+    " I never really used buffers so I removed these commands
     " nnoremap L :bnext<CR>
     " nnoremap H :bprev<CR>
 
@@ -190,12 +190,12 @@ endif
     nnoremap j gj
     nnoremap k gk
 
-	" Use capital H/L for first/last non-whitespace character on line
-	noremap H ^
-	noremap L g_
+    " Use capital H/L for first/last non-whitespace character on line
+    noremap H ^
+    noremap L g_
 
-	" Select current line, excluding indents (great for copying to clipboard)
-	nnoremap vv ^vg_
+    " Select current line, excluding indents (great for copying to clipboard)
+    nnoremap vv ^vg_
 
     " Disable K from looking stuff up
     noremap K <Esc>
@@ -238,9 +238,9 @@ endif
     ab [en]  
     ab [ellipse] …     
     ab [bar] ―
-	ab [la] ←
-	ab [ra] →
-	ab [pi] π
+    ab [la] ←
+    ab [ra] →
+    ab [pi] π
 
 
     " Toggle invisible whiteSpace ¬ ¶
@@ -278,8 +278,8 @@ endif
     vnoremap <Tab> >gv
     vnoremap <S-Tab> <gv
 
-	" Make Control-T uppercase the current word 
-	inoremap <C-t> <ESC>bgUWea
+    " Make Control-T uppercase the current word 
+    inoremap <C-t> <ESC>bgUWea
 
     " Add the . command to visual mode
     vnoremap . :norm.<CR>
@@ -484,26 +484,26 @@ nnoremap <F4> :w<CR>:make<CR>:cw<CR>
 " Go into WordProcessorMode when typing Markdown paragraphs: <leader>0
 " http://www.drbunsen.org/writing-in-vim/
 func! WordProcessorMode()
-	setlocal formatoptions=1t
-	setlocal noexpandtab
-	map j gj
-	map k gk
-	setlocal spell spelllang=en_us
-	set complete+=s
-	set formatprg=par
-	setlocal wrap
-	setlocal linebreak
+    setlocal formatoptions=1t
+    setlocal noexpandtab
+    map j gj
+    map k gk
+    setlocal spell spelllang=en_us
+    set complete+=s
+    set formatprg=par
+    setlocal wrap
+    setlocal linebreak
 endfu
 nnoremap <leader>0 :silent call WordProcessorMode()
 
 if has('persistent_undo')
-	set undofile "Enable persistent undo
+    set undofile "Enable persistent undo
 
-	" Set persistent undo directory
-	set undodir=~/.vim/undo
-	if !isdirectory(expand(&undodir))
-		call mkdir(expand(&undodir), 'p')
-	endif
+    " Set persistent undo directory
+    set undodir=~/.vim/undo
+    if !isdirectory(expand(&undodir))
+        call mkdir(expand(&undodir), 'p')
+    endif
 endif
 
 " Run "formd" command on buffer to fix Markdown hyperlinks
@@ -534,3 +534,9 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=2\x7" " 1 = vertical bar; 2 = underscore
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
+
+" Ctrl+S should save in normal and input mode
+noremap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+imap <c-s> <Esc><c-s>
+
