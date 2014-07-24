@@ -43,7 +43,7 @@ set color_gray="%{\033[1;36m%}"
 set color_normal="%{\033[0m%}"
 set color_history="%{\033[0;35m%}"
 
-setenv GIT_PROMPT  "git status |& git-prompt.awk"
+set GIT_PROMPT=`git status |& git-prompt.awk`
 
 # history time path
 #set p1="%B%h%b %t:%B$color_path%~$color_normal%b "
@@ -57,5 +57,5 @@ set p1="%B%h%b %m:%B$color_path%c2$color_normal%b "
 # history time computer path
 # set p1="%h %t %B%m%b:%B$color_path%~$color_normal%b "
 
-set prompt="${color_history}${p1}${color_gray}`$GIT_PROMPT`${color_normal}${ptail} "
+set prompt="${color_history}${p1}${color_gray}$GIT_PROMPT${color_normal}${ptail} "
 
