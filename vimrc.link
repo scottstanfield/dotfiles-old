@@ -211,7 +211,8 @@ endif
     au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
 
     " Open current Markdown (*.md) file in OS X "Marked" and force redraw
-    nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
+    " nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
+    nnoremap <leader>m :silent !open -a MacDown.app '%:p'<cr> :redraw!<cr>
 
 "    nnoremap <leader>r gq}               " *r*eformat current paragraph
 
