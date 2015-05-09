@@ -5,11 +5,11 @@ OS=`uname`
 case $OS in
     Linux)
         IP=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`
-        WANIP=`wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
+        WANIP=`curl ip.mattcarrier.net 2> /dev/null `
         ;;
    FreeBSD|OpenBSD|Darwin)
         IP=`ifconfig | grep -E 'inet.[0-9]' | grep -v '127.0.0.1' | awk '{ print $2}'`
-        WANIP=`curl checkip.dyndns.org 2>/dev/null | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
+        WANIP=`curl ip.mattcarrier.net 2> /dev/null `
         ;;
     *)
         IP="Unknown"
