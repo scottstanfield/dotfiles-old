@@ -211,8 +211,8 @@ endif
     au FileType html map <buffer> <leader>R :silent! ! osascript -e 'tell app "Google Chrome" to tell the active tab of the first window to reload'<cr>:redraw!<cr>
 
     " Open current Markdown (*.md) file in OS X "Marked" and force redraw
-    " nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
-    nnoremap <leader>m :silent !open -a MacDown.app '%:p'<cr> :redraw!<cr>
+    nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> :redraw!<cr>
+    " nnoremap <leader>m :silent !open -a MacDown.app '%:p'<cr> :redraw!<cr>
 
 "    nnoremap <leader>r gq}               " *r*eformat current paragraph
 
@@ -267,6 +267,8 @@ endif
 
     nnoremap <C-j> <C-d>
     nnoremap <C-k> <C-u>
+	nnoremap <space> <C-d>
+	nnoremap <C-space> <C-u>
 
     nnoremap <leader>b <C-w>l
 
@@ -290,7 +292,8 @@ endif
     inoremap <S-Tab> <C-P>
 
     " Execute buffer in Python
-    nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    " nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    nnoremap <leader>p :w<CR>:!/usr/bin/env awk -f % data.csv <CR>
     " nnoremap <leader>p :w<CR>:!/usr/bin/env node % <CR>
 " }}
 
@@ -367,6 +370,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'bling/vim-airline'
     let g:airline_powerline_fonts = 1
     let g:airline_theme = 'bubblegum'
+" for debugging tab settings
+"	let g:airline_section_c = airline#section#create(['fo: %{&fo} tw: %{&tw} wm: %{&wm} ts: %{&ts} et: %{&et} sw: %{&sw}'])
 
     " Bundle 'chrisbra/csv.vim'
 
@@ -431,9 +436,8 @@ augroup my_au
     " place this after Bundles have loaded
     " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
     filetype plugin indent on
-    au FileType, text,markdown setlocal textwidth=72 colorcolumn=80
-    au FileType stylus set ts=4|set shiftwidth=4|set expandtab
-    au FileType jade set ts=4|set shiftwidth=4|set noexpandtab
+    au FileType text,markdown setlocal textwidth=72 colorcolumn=80
+    au FileType stylus,jade set tabstop=2|set softtabstop=2|set shiftwidth=2|set expandtab
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
 
@@ -455,6 +459,7 @@ augroup my_au
 
     " Jump to the last position of the cursor
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
     " Turn off line wrapping when working on HTML files
     au BufNewFile,BufRead *.html setlocal nowrap
 augroup END

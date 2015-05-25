@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+	<name>Scott Stanfield Private</name>
+
+	<item>
+		<name>Change F13 to 15 to Volume Control</name>
+		<identifier>private.f15_to_volume_up</identifier>
+		<autogen> __KeyToKey__ KeyCode::F15, KeyCode::VK_CONSUMERKEY_VOLUME_UP </autogen>
+		<autogen> __KeyToKey__ KeyCode::F14, KeyCode::VK_CONSUMERKEY_VOLUME_DOWN </autogen>
+		<autogen> __KeyToKey__ KeyCode::F13, KeyCode::VK_CONSUMERKEY_VOLUME_MUTE </autogen>
+	</item>
+
+	<item>
+		<name>Change F9 to Music: Next Track</name>
+		<identifier>private.f9_to_volume_mute</identifier>
+		<autogen> __KeyToKey__ KeyCode::F9, KeyCode::VK_CONSUMERKEY_MUSIC_PREV </autogen>
+		<autogen> __KeyToKey__ KeyCode::F10, KeyCode::VK_CONSUMERKEY_MUSIC_PLAY </autogen>
+		<autogen> __KeyToKey__ KeyCode::F11, KeyCode::VK_CONSUMERKEY_MUSIC_NEXT </autogen>
+		<autogen> __KeyToKey__ KeyCode::F12, KeyCode::VK_OPEN_URL_APP_iTunes </autogen>
+	</item>
+
+	<item>
+		<name>Change Help to Capslock</name>
+		<identifier>private.help_to_capslock</identifier>
+		<autogen> __KeyToKey__ KeyCode::HELP, KeyCode::CAPSLOCK </autogen>
+	</item>
+
+  </item>
+</root>
