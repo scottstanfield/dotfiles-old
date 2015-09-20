@@ -125,7 +125,8 @@ endif
     vnoremap <space> zf             " wrap a visual block with a fold
     " nnoremap <space> za             " toggle fold with space
     " noremap <leader>f za
-
+	"
+	
     nnoremap <F10> :silent call ToggleFold()<CR>
     "nnoremap <leader>fc zM          " close all folds
     "nnoremap <leader>fo zR          " open all folds
@@ -292,8 +293,8 @@ endif
     inoremap <S-Tab> <C-P>
 
     " Execute buffer in Python
-    " nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
-    nnoremap <leader>p :w<CR>:!/usr/bin/env awk -f % data.csv <CR>
+    nnoremap <leader>p :w<CR>:!/usr/bin/env python % <CR>
+    " nnoremap <leader>p :w<CR>:!/usr/bin/env awk -f % data.csv <CR>
     " nnoremap <leader>p :w<CR>:!/usr/bin/env node % <CR>
 " }}
 
@@ -340,6 +341,10 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
     " http://nvie.com/posts/how-i-boosted-my-vim/
 
+	Bundle 'zaiste/tmux.vim'
+
+	Bundle 'vim-scripts/dbext.vim'
+
     Bundle 'tpope/vim-markdown'
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-repeat'
@@ -354,6 +359,8 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     Bundle 'tpope/vim-commentary'
     " comment out with the 'gc' command
     Bundle 'mileszs/ack.vim'
+
+	Bundle 'https://bitbucket.org/larsyencken/vim-drake-syntax.git'
 
     Bundle 'scrooloose/syntastic'
     let g:syntastic_javascript_checkers = ['jshint']
@@ -428,8 +435,16 @@ endif
 
 " Auto Commands autocmds {{
 
+let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=cc3.db'
+augroup sql
+	au!
+	autocmd BufRead *.sql DBSetOption profile=sqlite
+augroup end
+
 " Wrapping autocmd in a group per http://bit.ly/15wKRrM
 augroup my_au
+
+
     autocmd!
     au FileType python setlocal noexpandtab
 
@@ -440,6 +455,7 @@ augroup my_au
     au FileType stylus,jade set tabstop=2|set softtabstop=2|set shiftwidth=2|set expandtab
     au FileType javascript set ts=4|set shiftwidth=4|set expandtab
     au FileType coffee setlocal ts=2 shiftwidth=2 shiftwidth=2 expandtab
+	au Filetype drake set ts=2 softtabstop=2 shiftwidth=2 expandtab
 
     au BufEnter *.tsv set tabstop=14 softtabstop=14 shiftwidth=14 noexpandtab
 
@@ -494,7 +510,7 @@ func! WordProcessorMode()
     setlocal noexpandtab
     map j gj
     map k gk
-    setlocal spell spelllang=en_us
+    " setlocal spell spelllang=en_us
     set complete+=s
     set formatprg=par
     setlocal wrap
@@ -545,4 +561,5 @@ endif
 noremap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
 imap <c-s> <Esc><c-s>
+
 
