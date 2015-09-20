@@ -22,13 +22,6 @@
   set shell=/bin/sh
 " }}
 
-" Vundle {{
-    filetype off                    " Required first for Bundles to work
-    set rtp+=~/.vim/bundle/vundle
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
-" }}
-
 " General {{
     set nobackup                    " don't let vim backup files
     set noswapfile
@@ -337,70 +330,67 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
     noremap <leader>tm :tabmove
 " }}
 
-" Bundles {{
-    " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#snipmate
-    " http://nvie.com/posts/how-i-boosted-my-vim/
+" Plugins {{
+	" Follow install directions here:
+	" https://github.com/junegunn/vim-plug
+	"
+	call plug#begin('~/.vim/plugged')
 
-	Bundle 'zaiste/tmux.vim'
+	Plug 'tpope/vim-sensible'
 
-	Bundle 'vim-scripts/dbext.vim'
+	Plug 'zaiste/tmux.vim'
+	Plug 'vim-scripts/dbext.vim'
+    Plug 'tpope/vim-markdown'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'matchit.zip'
+    Plug 'digitaltoad/vim-jade'
+    Plug 'kchmck/vim-coffee-script'
+    Plug 'groenewege/vim-less'
+    Plug 'wavded/vim-stylus'
+    Plug 'puppetlabs/puppet-syntax-vim'
 
-    Bundle 'tpope/vim-markdown'
-    Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'matchit.zip'
-    Bundle 'digitaltoad/vim-jade'
-    Bundle 'kchmck/vim-coffee-script'
-    Bundle 'groenewege/vim-less'
-    Bundle 'wavded/vim-stylus'
-    Bundle 'puppetlabs/puppet-syntax-vim'
-
-    Bundle 'tpope/vim-commentary'
+    Plug 'tpope/vim-commentary'
     " comment out with the 'gc' command
-    Bundle 'mileszs/ack.vim'
+    Plug 'mileszs/ack.vim'
 
-	Bundle 'https://bitbucket.org/larsyencken/vim-drake-syntax.git'
+	Plug 'https://bitbucket.org/larsyencken/vim-drake-syntax.git'
 
-    Bundle 'scrooloose/syntastic'
+    Plug 'scrooloose/syntastic'
     let g:syntastic_javascript_checkers = ['jshint']
     let g:syntastic_error_symbol = '✗'
     let g:syntastic_warning_symbol='⚠'
     " let g:syntastic_auto_jump=1
     " nnoremap <leader>js :w<CR>:make<CR>:cw<CR>
 
-    " Install custom font "Monaco for Powerline" first
-    " https://github.com/Lokaltog/powerline-fonts
-    " Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-    " let g:Powerline_symbols = 'fancy'
-
-    Bundle 'bling/vim-airline'
+    Plug 'bling/vim-airline'
     let g:airline_powerline_fonts = 1
     let g:airline_theme = 'bubblegum'
-" for debugging tab settings
-"	let g:airline_section_c = airline#section#create(['fo: %{&fo} tw: %{&tw} wm: %{&wm} ts: %{&ts} et: %{&et} sw: %{&sw}'])
+	" for debugging tab settings
+	"	let g:airline_section_c = airline#section#create(['fo: %{&fo} tw: %{&tw} wm: %{&wm} ts: %{&ts} et: %{&et} sw: %{&sw}'])
 
-    " Bundle 'chrisbra/csv.vim'
+    " shows git diff marks in the gutter
+    " Plug 'airblade/vim-gitgutter'
 
-  " shows git diff marks in the gutter
-    " Bundle 'airblade/vim-gitgutter'
-
-    Bundle 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim'
     let g:user_emmet_leader_key = '<c-e>'
 
-    Bundle 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     nnoremap <leader>nt :NERDTree<cr>
 
-    Bundle 'jistr/vim-nerdtree-tabs'
+    Plug 'jistr/vim-nerdtree-tabs'
     nnoremap <leader>u <plug>NERDTreeTabsToggle<cr>
 
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'endel/ctrlp-filetype.vim'
+    Plug 'kien/ctrlp.vim'
+    Plug 'endel/ctrlp-filetype.vim'
 
-    Bundle 'vim-scripts/mru.vim'
+    Plug 'vim-scripts/mru.vim'
 
-    Bundle 'nathanaelkane/vim-indent-guides'
+    Plug 'nathanaelkane/vim-indent-guides'
     nmap <silent> <leader>g <Plug>IndentGuidesToggle
+
+	call plug#end()
 
 " }}
 
@@ -448,7 +438,7 @@ augroup my_au
     autocmd!
     au FileType python setlocal noexpandtab
 
-    " place this after Bundles have loaded
+    " place this after plugins have loaded
     " Set textwidth like a boss http://blog.ezyang.com/2010/03/vim-textwidth/
     filetype plugin indent on
     au FileType text,markdown setlocal textwidth=72 colorcolumn=80
