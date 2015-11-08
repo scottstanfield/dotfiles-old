@@ -27,18 +27,15 @@
     set noswapfile
     set nowritebackup               " And again.
     set autochdir                   " always switch to current dir
-    set backspace=indent,eol,start  " Intuitive backspacing.
     set backupdir=~/.vim/backup
     set clipboard=unnamed           " Copy goes to system in 7.3
     set hlsearch                    " Highlight searches <leader>/ turns off
     set wildmode=list:longest       " Complete files like a shell.
     set modeline
     set noerrorbells                " No beeping!
-    set showcmd                     " Display incomplete commands.
     set visualbell                  " No flashing either.
     set wildignore+=*.jpg,*.gif,*.png,*.git,*.gem,*.zip,*.tar.gz
     set wildignore+=node_modules
-    set wildmenu                    " Enhanced command line completion.
 
     " After searching with /, hitting <leader>/ toggles highlight
     nnoremap <silent> <leader>/ :set hlsearch! hlsearch?<CR>
@@ -56,15 +53,12 @@ endif
     set colorcolumn=80            " vertical line at 80 cols
     set nostartofline               " Searches leave cursor on same column
     set ignorecase                  " Case-insensitive searching.
-    set incsearch                   " Highlight matches as you type.
     set lazyredraw                  " No redraw during macro execution
     set number                      " Show line numbers.
-    set ruler                       " Show cursor position.
     set shortmess=atI               " stifle the long interrupt prompts
     set showmode                    " Display the mode you're in.
     set smartcase                   " But case-sensitive if has caps
     set scrolloff=3                 " Show 3 lines around cursor (more context)
-    set laststatus=2                " Show the status line all the time
     set noshowmode                  " hide the default mode text (e.g. -- INSERT --)
 "    set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
@@ -78,7 +72,6 @@ endif
 
 
 " Indenting and tabs {{
-    set autoindent          " auto indent new lines
     set smartindent         " be smart about it
     set nowrap              " do not wrap lines please
     set tabstop=4
