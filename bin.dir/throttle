@@ -1,0 +1,29 @@
+#!/bin/sh
+
+if [ $# -lt "1" ]; then
+	echo "usage: `basename $0` limit [ports]"
+	exit 1
+fi
+
+if [[ $EUID -ne 0 ]]; then
+	IPFW="sudo ipfw"
+else
+	IPFW="ipfw"
+fi
+
+THROTTLE=`$IPFW list 1 2>/dev/null`
+
+if [ -n "$THROTTLE" ]; then
+	$IPFW delete 1
+fi
+
+LIMIT="$1Kbit/s"
+
+if [ $# -gt "1" ]; then
+	PORTS="$2"
+else
+	PORTS="80,443,8000,8080,8888"
+fi
+
+$IPFW pipe 1 config bw $LIMIT
+$IPFW add 1 pipe 1 ip from me to any src-port $PORTS
