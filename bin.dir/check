@@ -1,0 +1,39 @@
+#!/bin/sh
+usage() {
+	echo "Checks for files and fails on the first failure." >&2
+	echo "usage: $0 [-d] [-x] file [...]" >&2
+	echo "Use -d to check for directories." >&2
+	echo "Use -x to check for executable files." >&2
+	echo "Use -h to print this help." >&2
+	exit 2
+}
+MustBeDirectory=false
+MustBeExecutable=false
+while getopts dxh o
+do
+	case $o in
+		d)    MustBeDirectory=true;;
+		x)    MustBeExecutable=true;;
+		h|\?) usage;;
+	esac
+done
+shift `expr $OPTIND - 1`
+[ $# -ge 1 ] || usage
+while [ $# -ge 1 ]
+do
+	if [ ! -s $1 ]
+	then
+		echo "cannot find $1" >&2
+		exit 1
+	elif $MustBeDirectory && [ ! -d $1 ]
+	then
+		echo "cannot find directory $1" >&2
+		exit 1
+	elif $MustBeExecutable && [ ! -x $1 ]
+	then
+		echo "$1 is not executable" >&2
+		exit 1
+	fi
+	shift 1
+done
+exit 0
