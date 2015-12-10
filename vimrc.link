@@ -493,7 +493,7 @@ func! WordProcessorMode()
     setlocal noexpandtab
     map j gj
     map k gk
-    " setlocal spell spelllang=en_us
+    setlocal spell spelllang=en_us
     set complete+=s
     set formatprg=par
     setlocal wrap
