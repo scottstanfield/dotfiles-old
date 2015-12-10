@@ -1,0 +1,9 @@
+#!/bin/sh
+c1="\033[1;35m"
+c2="\033[0m"
+
+# show the file initially
+sh -c "clear; echo \"$c1\"; date; echo \"$c2\"; cat $@;"
+
+# now monitor the file for changes
+fswatch -0 $@ | xargs -0 -n1 -I{} sh -c "clear; echo \"$c1\"; date; echo \"$c2\"; cat {};"
